@@ -5,6 +5,9 @@ class Vertice:
     def __hash__(self) -> int:
         return hash(self.valor)
 
+    def __eq__(self, o: object) -> bool:
+        return self.valor == o.valor
+
     def __repr__(self) -> str:
         return f"{self.valor}"
 
