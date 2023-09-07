@@ -1,1 +1,1 @@
-from .graph import Grafo, Arista, Nodo
+from .graph import Grafo, Arista, Vertice
