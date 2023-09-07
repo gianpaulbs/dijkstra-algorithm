@@ -6,7 +6,7 @@ class Vertice:
         return hash(self.valor)
 
     def __eq__(self, o: object) -> bool:
-        return self.valor == o.valor
+        return self.valor == o.valor if type(o) == Vertice else self.valor == o
 
     def __repr__(self) -> str:
         return f"{self.valor}"
