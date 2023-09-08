@@ -17,6 +17,13 @@ class Arista:
         self.vertice2: Vertice = vertice2
         self.peso: int = peso
     
+    def __eq__(self, __value: object) -> bool:
+        if type(__value) == Arista:
+            return self.vertice1 == __value.vertice1 and self.vertice2 == __value.vertice2 and self.peso == __value.peso
+        elif type(__value) == tuple and len(__value) == 3:
+            return (self.vertice1, self.vertice2, self.peso) == __value
+        return False
+
     def __iter__(self):
         return iter((self.vertice1, self.vertice2, self.peso))
 
