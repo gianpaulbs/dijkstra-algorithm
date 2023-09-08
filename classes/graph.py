@@ -34,13 +34,20 @@ class Arista:
         return self.__str__()
     
 class Grafo:
-    def __init__(self, vertices:dict) -> None:
-        self.vertices: dict[Vertice, list[tuple[Vertice, int]]] = vertices or {}
+    def __init__(self) -> None:
+        self.vertices: dict[Vertice, list[tuple[Vertice, int]]] = {}
 
     def agregar_vertice(self, vertice: Vertice | str):
         vertice: Vertice = Vertice(vertice) if type(vertice) == str else vertice 
         if vertice not in self.vertices:
             self.vertices[vertice] = []
+    
+    def agregar_arista(self, arista:Arista):
+        vertice1, vertice2, peso = arista
+        if vertice1 not in self.vertices or vertice2 not in self.vertices:
+            raise Exception("No existe el vertice")
+        self.vertices[vertice1].append((vertice2, peso))
+        self.vertices[vertice2].append((vertice1, peso))
     
     def obtener_vertices(self) -> list[Vertice]:
         return self.vertices.keys()
@@ -48,7 +55,5 @@ class Grafo:
     def obtener_aristas(self) -> list[Arista]:
         return [Arista(v, a[0], a[1]) for v, vertices in self.vertices.items() for a in vertices]
 
-    def agregar_arista(self, arista:Arista):
-        vertice1, vertice2, peso = arista
-        self.vertices[vertice1].append((vertice2, peso))
-        self.vertices[vertice2].append((vertice1, peso))
+    def obtener_adyacentes(self, vertice: Vertice) -> list[tuple[Vertice, int]]:
+        return self.vertices[vertice]
