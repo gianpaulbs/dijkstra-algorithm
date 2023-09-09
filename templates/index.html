@@ -1,11 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dijkstra</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/Estilos.css')}}">
 </head>
 <body>
-    
+    <header class="header">
+    <nav>
+        <a href="#" class="text-white">Inicio</a>
+        <a href="#" class="text-white">Acerca de</a>
+        <a href="#" class="text-white">Contacto</a>
+    </nav>
+    <section class="textos-header font-bold"><h1>Algoritmo de Dijkstra</h1>
+        <h2>Encontrar el camino más corto es como buscar una aguja en un pajar, pero Dijkstra lo hace con eficiencia.</h2></section>
+    <div class ="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-5.64,33.06 C86.34,-58.69 315.46,110.05 500.00,49.98 L588.03,174.19 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path></svg></div>
+    </header>
+    <main>
+        <section class="contenedor Acerca-de">
+        <h2 class="titulo text-3xl text-center font-bold text-cyan-900">Acerca de Dijkstra</h2>
+        <div class="contenedor-Acerca-de">
+            <img src="{{url_for('static',filename='img/pensante.png')}}" alt="" class="imagen-Acerca-de">
+            <div class="contenido-texto">
+            <h3><span>1</span> ¿Ques es Dijkstra?</h3>
+            <p>El algoritmo de Dijkstra, también llamado algoritmo de caminos mínimos, es un algoritmo para la determinación del camino más corto, dado un vértice origen, hacia el resto de los vértices en un grafo que tiene pesos en cada arista.
+               La idea subyacente en este algoritmo consiste en ir explorando todos los caminos más cortos que parten del vértice origen y que llevan a todos los demás vértices; cuando se obtiene el camino más corto desde el vértice origen hasta el resto de los vértices que componen el grafo, el algoritmo se detiene. Se trata de una especialización de la búsqueda de costo uniforme y, como tal, no funciona en grafos con aristas de coste negativo</p>
+            </div>
+        </div>
+        <div class="contenedor-Historia">
+            <img src="{{url_for('static',filename='img/historia.png')}}" alt="" class="imagen-historia">
+            <div class="contenido-texto">
+            <h3><span>2</span> Historia</h3>
+            <p>
+                El algoritmo de Dijkstra fue desarrollado por el científico de la computación Edsger W. Dijkstra en 1956 mientras trabajaba en la Universidad Técnica de Eindhoven en los Países Bajos. Dijkstra desarrolló este algoritmo como una solución al problema de encontrar el camino más corto en una red de carreteras. Originalmente, lo concibió para optimizar la planificación de rutas en un país, pero rápidamente se dio cuenta de que tenía aplicaciones mucho más amplias en la ciencia de la computación y en otros campos.
+
+Dijkstra presentó el algoritmo en un artículo titulado "A Note on Two Problems in Connexion with Graphs" ("Una nota sobre dos problemas relacionados con grafos"), publicado en 1959. El algoritmo se convirtió en una herramienta fundamental en teoría de grafos y ciencias de la computación, y se utiliza para encontrar rutas óptimas en redes de todo tipo, desde redes de carreteras hasta redes de comunicación y grafos de cualquier naturaleza.
+
+La idea central detrás del algoritmo de Dijkstra es elegir iterativamente el nodo más cercano no visitado y actualizar las distancias a todos sus vecinos no visitados. Esto asegura que, cuando se marca un nodo como visitado, su distancia desde el nodo de origen sea la distancia más corta posible. La eficiencia y simplicidad del algoritmo de Dijkstra lo han convertido en una herramienta valiosa en la resolución de problemas relacionados con rutas y caminos más cortos en una amplia gama de aplicaciones.
+            </p>
+            </div>
+        </div>
+    </section>
+
+    </main>
 </body>
 </html>
