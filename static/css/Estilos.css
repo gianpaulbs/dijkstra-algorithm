@@ -1,0 +1,63 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'open sans';
+}
+.contenedor{
+    padding: 60px 0;
+    width: 90%;
+    max-width: 1000px;
+    margin:auto;
+    overflow: hidden;
+
+}
+.header{
+    width: 100%;
+    height: 600px;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+.wave{
+    position:absolute;
+    bottom:0;
+    width: 100%;
+}
+header .textos-header{
+    display: flex;
+    height: 430px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.textos-header h1{
+    font-size: 60px;
+    color: #fff;
+}
+.textos-header h2{
+    padding: 40px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+}
+nav{
+    text-align: right;
+    padding: 30px 50px 0 0;
+}
+nav>a{
+    color:#fff;
+    font-weight: 300;
+    text-decoration:  none;
+    margin-right:15px;
+}
+nav>:hover{
+    text-decoration: underline;
+}
