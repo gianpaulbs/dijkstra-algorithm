@@ -126,8 +126,7 @@ if __name__ == "__main__":
     print("Camino:", " -> ".join(map(str, camino)))
 """
 
-# testeo 
-"""
+# testeo
 if __name__ == "__main__":
     grafo = Grafo()
     vertices = ["A", "B", "C", "D", "E"]
@@ -153,4 +152,3 @@ if __name__ == "__main__":
     distancia, camino = grafo.dijkstra(inicio, destino)
     print(f"Distancia más corta entre {inicio} y {destino}: {distancia}")
     print("Camino:", " -> ".join(map(str, camino)))
-"""
