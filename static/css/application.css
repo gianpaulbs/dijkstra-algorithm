@@ -1,5 +1,9 @@
 #network {
-    width: 80%;
-    height: 400px;
+    width: 100%;
+    height: 80%;
     border: 1px solid lightgray;
+}
+
+.info-head {
+    margin-bottom: 10px;
 }
