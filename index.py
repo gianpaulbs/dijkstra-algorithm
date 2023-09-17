@@ -7,8 +7,8 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.post("/procesar")
-def procesar():
-    return {"test": True}
+@app.get("/application")
+def dijkstra():
+    return render_template("application.html")
 
 app.run(debug=True)
