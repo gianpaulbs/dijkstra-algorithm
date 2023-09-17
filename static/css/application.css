@@ -1,6 +1,6 @@
 #network {
     margin:auto;
-
+    margin-top: 40px;
     width: 80%;
     height: 400px;
   
@@ -53,10 +53,40 @@ body {
     padding-bottom: 150px; 
     box-sizing: border-box;
 }
+.info-head {
+    
+    font-size: 20px;
+    font-weight: bold;
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Helvetica Neue', sans-serif;
+
+    
+}
+#button-generate-nodes {
+    font-size: 20px;
+    color: #fff;
+    background-color: #203A43;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#button-generate-nodes:hover {
+    background-color: #374b52;
+}
+
+
 .footer{
     text-align: right;
-  
-    margin-top: 170px;
+    margin-top: 400px;
     position: absolute;
     bottom: 0;
     width: 100%;
