@@ -5,8 +5,23 @@
         
         <!-- Import Application CSS-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/application.css') }}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/Estilos.css')}}">
+        
+
     </head>
     <body>
+        <nav>
+            <a href="/" class="text-cyan-900">Inicio</a>
+      
+        </nav>
+        <div class="Aplicacion text-3xl  font-bold text-cyan-900 ">
+            <h1>
+            Aplicación    
+            </h1>
+        </div>
         <div class="info-head">
             Se tiene una matriz simétrica con dimensiones <i>n x n</i>, el cual está definida entre los valores [5; 15]. <br/>
             Por favor, seleccione la dimensión que debería tener la matriz:
@@ -26,11 +41,20 @@
             <button id="button-generate-nodes">Generar</button>
         </div>
         <div id="network"></div>
+
+      
         <div id="matrix">
+            <h2 class"matriz "><b>Matriz Ponderada</b></h2>
             <table id="matrix-body"></table>
         </div>
-        
+
         <!-- Import Application JS -->
         <script type="module" src="{{ url_for('static', filename='js/application.js') }}"></script>
+        <footer class="footer  text-white">
+            <p>© 2023 grupo 2 mate computacional</p>
+            <div class ="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-5.64,33.06 C86.34,-58.69 315.46,110.05 500.00,49.98 L588.03,174.19 L0.00,150.00 Z" style="stroke: none; fill: #203A43;"></path></svg></div>
+           
+        </footer>
     </body>
+    
 </html>

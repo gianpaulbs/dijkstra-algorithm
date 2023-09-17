@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.get("/")
 def index():
-    return render_template("index.html")
+  return render_template("index.html")
 
 @app.get("/application")
 def dijkstra():
