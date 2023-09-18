@@ -15,6 +15,9 @@ class Vertice:
 
     def __repr__(self) -> str:
         return f"{self.valor}"
+    
+    def to_dict(self):
+        return { 'value': self.valor }
 
 class Arista:
     def __init__(self, vertice1: Vertice, vertice2: Vertice, peso: int) -> None:
@@ -89,8 +92,9 @@ class Grafo:
 
         camino_resultante = []
         vertice_actual = destino
+        
         while vertice_actual:
-            camino_resultante.insert(0, vertice_actual)
+            camino_resultante.insert(0, vertice_actual.to_dict())
             vertice_actual = camino[vertice_actual]
 
         if distancias[destino] == float('inf'):
@@ -145,10 +149,11 @@ if __name__ == "__main__":
 
     for arista in aristas:
         grafo.agregar_arista(arista)
-
+    
     inicio = Vertice("A")
     destino = Vertice("E")
 
     distancia, camino = grafo.dijkstra(inicio, destino)
+
     print(f"Distancia más corta entre {inicio} y {destino}: {distancia}")
     print("Camino:", " -> ".join(map(str, camino)))

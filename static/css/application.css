@@ -10,6 +10,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
     
 }
+
 .Aplicacion{
     margin-left: 40px;
 
@@ -17,6 +18,7 @@
     margin-bottom: 40px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 #matrix h2{
    text-align: center;
    margin-bottom: 30px;
@@ -42,17 +44,20 @@
     border: 1px solid #ddd;
     padding: 8px; 
 }
+
 .wave{
     position:absolute;
     bottom:0;
     width: 100%;
 }
+
 body {
     position: relative;
     min-height: 100vh;
     padding-bottom: 150px; 
     box-sizing: border-box;
 }
+
 .info-head {
     
     font-size: 20px;
@@ -64,7 +69,9 @@ body {
 
     
 }
-#button-generate-nodes {
+
+#button-generate-nodes,
+#button-shortest-path {
     font-size: 20px;
     color: #fff;
     background-color: #203A43;
@@ -83,7 +90,6 @@ body {
     background-color: #374b52;
 }
 
-
 .footer{
     text-align: right;
     margin-top: 400px;
@@ -91,8 +97,8 @@ body {
     bottom: 0;
     width: 100%;
     height: 150px;
-    
 }
+
 .footer p {
     margin-top: 120px;
     position:relative;

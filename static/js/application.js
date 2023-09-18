@@ -18,13 +18,16 @@ const addNode = (node, commit) => {
     node.label = alphabet[getTotalNodes()];
     commit(node);
 
+    matrix.nodes = data.nodes.get();
     matrix.addRowAndColumn();
-    matrix.draw(node.label);
+    matrix.draw();
 }
 
 const deleteNode = (node, commit) => {
     commit(node);
-    matrix.removeRowAndColumn();
+
+    matrix.nodes = data.nodes.get();
+    matrix.removeRowAndColumn(node.id);
     matrix.draw();
 }
 
@@ -36,6 +39,7 @@ const addEdge = (edge, commit) => {
     edge.label = weight;
     commit(edge);
 
+    matrix.edges = data.edges.get();
     matrix.setRelation(originIndex, targetIndex, weight);
     matrix.draw();
 }
@@ -44,27 +48,41 @@ const generateManyNodes = () => {
     const selectDimensionMatrix = document.getElementById("select-matrix-dimension");
     const missingNodes = selectDimensionMatrix.value - getTotalNodes();
 
-    if (missingNodes < 0) {
-        for (let i = 0; i < Math.abs(missingNodes); i++) {
+    for (let i = 0; i < Math.abs(missingNodes); i++) {
+        if (missingNodes < 0) {
             data.nodes.remove(getTotalNodes());
             matrix.removeRowAndColumn();
-            matrix.draw()
+        } else {
+            const id = getTotalNodes() + 1;
+            const label = alphabet[getTotalNodes()];
+    
+            data.nodes.add({ id, label });
+            matrix.addRowAndColumn();
         }
-
-        return;
     }
+    
+    matrix.nodes = data.nodes.get();
+    matrix.draw();
+}
 
-    for (let i = 0; i < missingNodes; i++) {
-        const id = getTotalNodes() + 1;
-        const label = alphabet[getTotalNodes()];
+const shortestPath = () => {
+    const data = {
+        nodes: matrix.nodes,
+        edges: matrix.edges
+    };
 
-        data.nodes.add({ id, label });
-        matrix.addRowAndColumn();
-        matrix.draw(label);
-    }
+    axios
+    .post('http://localhost:5000/dijkstra', data)
+    .then((response) => {
+        console.log('Todo ok owo');
+    })
+    .catch((error) => {
+        console.log('un error u.u');
+    });
 }
 
 document.getElementById('button-generate-nodes').addEventListener('click', generateManyNodes);
+document.getElementById('button-shortest-path').addEventListener('click', shortestPath);
 
 const container = document.getElementById('network');
 const manipulation = {

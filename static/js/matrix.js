@@ -1,6 +1,8 @@
 export class Matrix {
     constructor() {
         this.data = [];
+        this.nodes = [];
+        this.edges = [];
         this.length = 0;
     }
 
@@ -16,9 +18,7 @@ export class Matrix {
         }
     };
 
-    removeRowAndColumn() {
-        const index = this.length - 1;
-
+    removeRowAndColumn(index = this.length - 1) {
         for (let i = 0; i < this.length; i++) {
             this.data[i].splice(index, 1);
         }
@@ -32,42 +32,43 @@ export class Matrix {
         this.data[targetIndex][originIndex] = weight;
     }
 
-    draw(label = '') {
+    draw() {
         const table = document.getElementById('matrix-body');
         let thead = table.querySelector('thead');
         let tbody = table.querySelector('tbody');
 
-        if (label != '') {
-            let theadRow, th;
-
-            if (!thead) {
-                thead = document.createElement('thead');
-                theadRow = document.createElement('tr');
-            }
-            else {
-                theadRow = thead.querySelector('tr');
-            }
-            
-            th = document.createElement('th');
-            th.textContent = label;
-            theadRow.appendChild(th);
-            thead.appendChild(theadRow);
+        if (thead) {
+            thead.remove();
         }
-
+        
         if (tbody) {
             tbody.remove();
         }
 
-        tbody = document.createElement('tbody');
-        for (let i = 0; i < this.data.length; i++) {
-            const tbodyRow = document.createElement('tr');
+        if (this.nodes.length !== 0) {
+            thead = document.createElement('thead');
+            const theadRow = document.createElement('tr');
+            
+            for (const node of this.nodes) {
+              const th = document.createElement('th');
+              th.textContent = node.label;
+              theadRow.appendChild(th);
+            }
+            
+            thead.appendChild(theadRow);
+        }
 
-            for (let j = 0; j < this.data[i].length; j++) {
+        tbody = document.createElement('tbody');
+        
+        for (const rowData of this.data) {
+            const tbodyRow = document.createElement('tr');
+            
+            for (const cellData of rowData) {
                 const td = document.createElement('td');
-                td.textContent = this.data[i][j];
+                td.textContent = cellData;
                 tbodyRow.appendChild(td);
             }
-
+            
             tbody.appendChild(tbodyRow);
         }
 
