@@ -23,26 +23,29 @@
         <div class="contenedor-Acerca-de">
             <img src="{{url_for('static',filename='img/pensante.png')}}" alt="" class="imagen-Acerca-de">
             <div class="contenido-texto">
-            <h3><span>1</span> ¿Ques es Dijkstra?</h3>
+            <h3><span>1. </span> ¿Ques es Dijkstra?</h3>
             <p>El algoritmo de Dijkstra, también llamado algoritmo de caminos mínimos, es un algoritmo para la determinación del camino más corto, dado un vértice origen, hacia el resto de los vértices en un grafo que tiene pesos en cada arista.
                La idea subyacente en este algoritmo consiste en ir explorando todos los caminos más cortos que parten del vértice origen y que llevan a todos los demás vértices; cuando se obtiene el camino más corto desde el vértice origen hasta el resto de los vértices que componen el grafo, el algoritmo se detiene. Se trata de una especialización de la búsqueda de costo uniforme y, como tal, no funciona en grafos con aristas de coste negativo</p>
             </div>
         </div>
         <div class="contenedor-Historia">
-            <img src="{{url_for('static',filename='img/historia.png')}}" alt="" class="imagen-historia">
-            <div class="contenido-texto">
-            <h3><span>2</span> Historia</h3>
-            <p>
-                El algoritmo de Dijkstra fue desarrollado por el científico de la computación Edsger W. Dijkstra en 1956 mientras trabajaba en la Universidad Técnica de Eindhoven en los Países Bajos. Dijkstra desarrolló este algoritmo como una solución al problema de encontrar el camino más corto en una red de carreteras. Originalmente, lo concibió para optimizar la planificación de rutas en un país, pero rápidamente se dio cuenta de que tenía aplicaciones mucho más amplias en la ciencia de la computación y en otros campos.
-
-Dijkstra presentó el algoritmo en un artículo titulado "A Note on Two Problems in Connexion with Graphs" ("Una nota sobre dos problemas relacionados con grafos"), publicado en 1959. El algoritmo se convirtió en una herramienta fundamental en teoría de grafos y ciencias de la computación, y se utiliza para encontrar rutas óptimas en redes de todo tipo, desde redes de carreteras hasta redes de comunicación y grafos de cualquier naturaleza.
-
-La idea central detrás del algoritmo de Dijkstra es elegir iterativamente el nodo más cercano no visitado y actualizar las distancias a todos sus vecinos no visitados. Esto asegura que, cuando se marca un nodo como visitado, su distancia desde el nodo de origen sea la distancia más corta posible. La eficiencia y simplicidad del algoritmo de Dijkstra lo han convertido en una herramienta valiosa en la resolución de problemas relacionados con rutas y caminos más cortos en una amplia gama de aplicaciones.
-            </p>
+            <div class="contenido-texto-historia">
+                <h3><span>2. </span> Historia</h3>
+                <p>
+                    El algoritmo de Dijkstra fue desarrollado por el científico de la computación Edsger W. Dijkstra en 1956 mientras trabajaba en la Universidad Técnica de Eindhoven en los Países Bajos. Dijkstra desarrolló este algoritmo como una solución al problema de encontrar el camino más corto en una red de carreteras. Originalmente, lo concibió para optimizar la planificación de rutas en un país, pero rápidamente se dio cuenta de que tenía aplicaciones mucho más amplias en la ciencia de la computación y en otros campos.
+    
+                    Dijkstra presentó el algoritmo en un artículo titulado "Una nota sobre dos problemas relacionados con grafos", publicado en 1959. El algoritmo se convirtió en una herramienta fundamental en teoría de grafos y ciencias de la computación, y se utiliza para encontrar rutas óptimas en redes de todo tipo, desde redes de carreteras hasta redes de comunicación y grafos de cualquier naturaleza.
+    
+                    La idea central detrás del algoritmo de Dijkstra es elegir iterativamente el nodo más cercano no visitado y actualizar las distancias a todos sus vecinos no visitados. Esto asegura que, cuando se marca un nodo como visitado, su distancia desde el nodo de origen sea la distancia más corta posible. La eficiencia y simplicidad del algoritmo de Dijkstra lo han convertido en una herramienta valiosa en la resolución de problemas relacionados con rutas y caminos más cortos en una amplia gama de aplicaciones.
+                </p>
             </div>
+            <img src="{{url_for('static',filename='img/historia.png')}}" alt="" class="imagen-historia">
         </div>
     </section>
 
     </main>
+    <footer class="footer">
+        <p>© 2023 grupo 2 mate computacional</p>
+    </footer>
 </body>
 </html>

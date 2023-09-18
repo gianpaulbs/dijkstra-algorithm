@@ -15,10 +15,21 @@ export class Matrix {
             this.data[newIndex][i] = 0;
         }
     };
+
+    removeRowAndColumn() {
+        const index = this.length - 1;
+
+        for (let i = 0; i < this.length; i++) {
+            this.data[i].splice(index, 1);
+        }
+
+        this.data.splice(index, 1);
+        this.length--;
+    }
     
-    setRelation(originIndex, targetIndex) {
-        this.data[originIndex][targetIndex] = 1;
-        this.data[targetIndex][originIndex] = 1;
+    setRelation(originIndex, targetIndex, weight) {
+        this.data[originIndex][targetIndex] = weight;
+        this.data[targetIndex][originIndex] = weight;
     }
 
     draw(label = '') {
@@ -36,7 +47,7 @@ export class Matrix {
             else {
                 theadRow = thead.querySelector('tr');
             }
-
+            
             th = document.createElement('th');
             th.textContent = label;
             theadRow.appendChild(th);
@@ -60,7 +71,6 @@ export class Matrix {
             tbody.appendChild(tbodyRow);
         }
 
-        console.log(thead);
         table.appendChild(thead);
         table.appendChild(tbody);
     }
