@@ -47,11 +47,13 @@ class Grafo:
         if vertice not in self.vertices:
             self.vertices[vertice] = []
             
-    def agregar_arista(self, arista:Arista):
+    def agregar_arista(self, arista:Arista, /, bidireccional:bool=False):
         vertice1, vertice2, peso = arista
         if vertice1 not in self.vertices or vertice2 not in self.vertices:
             raise Exception("No existe el vertice")
         self.vertices[vertice1].append((vertice2, peso))
+        if bidireccional:
+            self.vertices[vertice2].append((vertice1, peso))
     
     def obtener_vertices(self) -> list[Vertice]:
         return self.vertices.keys()
