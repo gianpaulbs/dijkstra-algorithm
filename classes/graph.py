@@ -52,7 +52,6 @@ class Grafo:
         if vertice1 not in self.vertices or vertice2 not in self.vertices:
             raise Exception("No existe el vertice")
         self.vertices[vertice1].append((vertice2, peso))
-        self.vertices[vertice2].append((vertice1, peso))
     
     def obtener_vertices(self) -> list[Vertice]:
         return self.vertices.keys()
