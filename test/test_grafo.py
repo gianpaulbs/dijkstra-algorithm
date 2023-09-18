@@ -21,7 +21,7 @@ def test_arista_grafo():
         grafo.agregar_arista(a)
 
     aristas_grafo = grafo.obtener_aristas()
-    assert len(aristas_grafo) == len(lista_aristas) * 2
+    assert len(aristas_grafo) == len(lista_aristas)
     assert all( arista in aristas_grafo for arista in lista_aristas ) == True
 
 def test_get_adyacentes_grafo():
@@ -34,6 +34,6 @@ def test_get_adyacentes_grafo():
         grafo.agregar_arista(a)
 
     assert [a[0] for a in grafo.obtener_adyacentes("a")] == [Vertice("b"), Vertice("c"), Vertice("d")]
-    assert [a[0] for a in grafo.obtener_adyacentes("b")] == [Vertice("a"), Vertice("c")]
-    assert [a[0] for a in grafo.obtener_adyacentes("c")] == [Vertice("a"), Vertice("b")]
-    assert [a[0] for a in grafo.obtener_adyacentes("d")] == [Vertice("a")]
+    assert [a[0] for a in grafo.obtener_adyacentes("b")] == []
+    assert [a[0] for a in grafo.obtener_adyacentes("c")] == [Vertice("b")]
+    assert [a[0] for a in grafo.obtener_adyacentes("d")] == []
