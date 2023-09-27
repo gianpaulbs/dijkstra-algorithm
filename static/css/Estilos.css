@@ -2,6 +2,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: "Poppins"
 }
 
 .contenedor{
@@ -47,6 +48,7 @@ header .textos-header{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .textos-header h1{
@@ -60,12 +62,12 @@ header .textos-header{
     color: #fff;
 }
 nav{
-    padding: 30px 50px 0 0;
+    padding: 20px 50px 0 0;
     color: #cad2c5;
 }
 
 .contenedor-Acerca-de {
-    
+
     display: flex;
     justify-content: space-evenly;
     text-align: justify;
@@ -80,14 +82,7 @@ nav{
     height: auto; /* Mantiene la proporción de aspecto original */
 }
 
+
 .titulo {
     margin-bottom: 40px;
 }
-.imagen-Acerca-de {
-    max-width: 100%;
-    height: 300px;
-    width: 300px;
-    margin-right: 178px;    
-    margin-bottom: 20px;
-}
-
