@@ -3,27 +3,36 @@
     padding:0;
     box-sizing: border-box;
 }
-body{
-    font-family: 'open sans';
-}
+
 .contenedor{
     padding: 60px 0;
     width: 90%;
     max-width: 1200px;
     margin:auto;
     overflow: hidden;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .header{
     width: 100%;
     height: 600px;
-    background: #0F2027;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #52796f, #354f52, #2f3e46); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: cover;
     background-attachment: fixed;
     position: relative;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+        background-color: #84a98c;
+
+}
+
+.color-personalizado {
+    color: #354f52;
+}
+
+
+
+.fondo-personalizado {
+    background-color: #CAD2C5FF;
 }
 .wave{
     position:absolute;
@@ -51,17 +60,8 @@ header .textos-header{
     color: #fff;
 }
 nav{
-    text-align: right;
     padding: 30px 50px 0 0;
-}
-nav>a{
-    color:#fff;
-    font-weight: 300;
-    text-decoration:  none;
-    margin-right:15px;
-}
-nav>:hover{
-    text-decoration: underline;
+    color: #cad2c5;
 }
 
 .contenedor-Acerca-de {
@@ -72,29 +72,16 @@ nav>:hover{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
-.contenedor-Acerca-de h3 {
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    margin-left: 30px; 
+
+.imagen-centrada {
+    display: block;
+    margin: 0 auto; /* Centra horizontalmente */
+    max-width: 300px; /* Cambia el tamaño máximo según tus necesidades */
+    height: auto; /* Mantiene la proporción de aspecto original */
 }
-.contenedor-Acerca-de p{
-    margin-left: 30px; 
-}
-.contenedor-Historia {
-    margin-top: 60px;
-    display: flex;
-    justify-content: space-evenly;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-.contenedor-Historia h3 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
+
 .titulo {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 }
 .imagen-Acerca-de {
     max-width: 100%;
@@ -103,20 +90,4 @@ nav>:hover{
     margin-right: 178px;    
     margin-bottom: 20px;
 }
-.imagen-historia{
-    max-width: 100%;
-    height: 300px;
-    width: 300px;
-    margin-left: 60px;
-    margin-top: 100px;
-}
 
-.contenido-texto-historia {
-    flex: 1;
-    max-width: 800px; 
-    text-align: justify;
-}
-.footer{
-    text-align: right;
-    margin-right: 30px;
-}
