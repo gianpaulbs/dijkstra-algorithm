@@ -34,7 +34,15 @@ const deleteNode = (node, commit) => {
 const addEdge = (edge, commit) => {
     const originIndex = edge.from - 1;
     const targetIndex = edge.to - 1;
-    const weight = prompt('Ingrese el peso de la arista');
+    let weight = prompt('Ingrese el peso de la arista');
+
+    while (parseFloat(weight) <= 0) {
+        weight = prompt('Ingrese un peso válido (número positivo)');
+    }
+
+    while (weight>='A' && weight<='z') {
+        weight = prompt('Ingrese un peso válido (número positivo), no un caracter');
+    }
 
     edge.label = weight;
     commit(edge);
