@@ -73,7 +73,7 @@ const generateManyNodes = () => {
     matrix.draw();
 }
 
-const shortestPath = () => {
+const findShortestPath = () => {
     const data = {
         nodes: matrix.nodes,
         edges: matrix.edges
@@ -90,7 +90,7 @@ const shortestPath = () => {
 }
 
 document.getElementById('button-generate-nodes').addEventListener('click', generateManyNodes);
-document.getElementById('button-shortest-path').addEventListener('click', shortestPath);
+document.getElementById('button-shortest-path').addEventListener('click', findShortestPath);
 
 const container = document.getElementById('network');
 const manipulation = {
