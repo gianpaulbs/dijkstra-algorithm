@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from classes.graph import *
-import json
+from classes.dto import *
 
 app = Flask(__name__)
 
@@ -14,25 +14,23 @@ def application():
 
 @app.post("/dijkstra")
 def dijkstra():
-    req = json.loads(request.get_data())
-    nodes = req.get('nodes')
-    edges = req.get('edges')
+    data = request.get_json()
+    nodes = data.get('nodes', [])
+    edges = data.get('edges', [])
 
     grafo = Grafo()
-    vertices = list()
-    aristas = list()
-
-    for n in nodes: 
-        vertices.append(n.get('label'))
+    vertices = [Node(node['id'], node['label']) for node in nodes]
+    aristas = [Edge(edge['from'], edge['to'], int(edge['label'])) for edge in edges]
 
     for vertice in vertices:
-        grafo.agregar_vertice(Vertice(vertice))
+        grafo.agregar_vertice(Vertice(vertice.id, vertice.label))
 
-    for e in edges:
-        index_from = e.get('from') - 1
-        index_to = e.get('to') - 1
-        weight = int(e.get('label'))
-        aristas.append(Arista(Vertice(vertices[index_from]), Vertice(vertices[index_to]), weight))
+    for arista in aristas:
+        grafo.agregar_arista(Arista(
+            Vertice(arista.fromNodeId, vertices[arista.fromNodeId - 1].label),
+            Vertice(arista.toNodeId, vertices[arista.toNodeId - 1].label),
+            arista.label
+        ))
 
     # aristas = [
     #     Arista(Vertice("A"), Vertice("B"), 2),
@@ -44,11 +42,8 @@ def dijkstra():
     #     Arista(Vertice("D"), Vertice("E"), 2)
     # ]
 
-    for arista in aristas:
-        grafo.agregar_arista(arista)
-
-    inicio = Vertice("A")
-    destino = Vertice("E")
+    inicio = Vertice(1, "A")
+    destino = Vertice(5, "E")
 
     distancia, camino = grafo.dijkstra(inicio, destino)
     return jsonify({

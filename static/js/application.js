@@ -79,11 +79,32 @@ const findShortestPath = () => {
         edges: matrix.edges
     };
 
+    const setEdgeColors = (path) => {
+        const edgesArray = data.edges.get();
+
+        for (let i = 0; i < path.length - 1; i++) {
+            const sourceNodeId = path[i].id;
+            const targetNodeId = path[i + 1].id;
+
+            const edge = edgesArray.find(edge => (
+                (edge.from === sourceNodeId && edge.to === targetNodeId) ||
+                (edge.from === targetNodeId && edge.to === sourceNodeId)
+            ));
+
+            if (edge) edge.color = 'red';
+        }
+
+        data.edges.update(edgesArray);
+    };
+
     const handleResponse = (data) => {
         const messageContainer = document.getElementById('message');
-        const pathLength = data.path.length;
-        const startNode = data.path[0].value;
-        const endNode = data.path[pathLength - 1].value;
+        const path = data.path;
+        const pathLength = path.length;
+        const startNode = path[0].node;
+        const endNode = path[pathLength - 1].node;
+
+        setEdgeColors(path);
         messageContainer.textContent = `La distancia más corta entre ${startNode} y ${endNode} es ${data.distance}.`;
     };
     
@@ -95,7 +116,6 @@ const findShortestPath = () => {
         .catch((error) => {
             console.log(error);
         });
-    
 }
 
 document.getElementById('button-generate-nodes').addEventListener('click', generateManyNodes);
@@ -111,7 +131,12 @@ const manipulation = {
 
 const options = { 
     locale: 'es',
-    manipulation: manipulation
+    manipulation: manipulation,
+    edges: {
+        smooth: {
+            type: 'continuous'
+        }
+    }
 }
 
 new vis.Network(container, data, options);

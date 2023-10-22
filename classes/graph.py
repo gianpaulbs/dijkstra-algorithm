@@ -1,7 +1,8 @@
 import heapq
 
 class Vertice:
-    def __init__(self, valor) -> None:
+    def __init__(self, id, valor) -> None:
+        self.id = id
         self.valor = valor
     
     def __lt__(self, otro_vertice):
@@ -17,7 +18,7 @@ class Vertice:
         return f"{self.valor}"
     
     def to_dict(self):
-        return { 'value': self.valor }
+        return { 'id': self.id, 'node': self.valor }
 
 class Arista:
     def __init__(self, vertice1: Vertice, vertice2: Vertice, peso: int) -> None:
