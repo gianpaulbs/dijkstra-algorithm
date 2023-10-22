@@ -74,19 +74,28 @@ const generateManyNodes = () => {
 }
 
 const findShortestPath = () => {
-    const data = {
+    const body = {
         nodes: matrix.nodes,
         edges: matrix.edges
     };
 
+    const handleResponse = (data) => {
+        const messageContainer = document.getElementById('message');
+        const pathLength = data.path.length;
+        const startNode = data.path[0].value;
+        const endNode = data.path[pathLength - 1].value;
+        messageContainer.textContent = `La distancia más corta entre ${startNode} y ${endNode} es ${data.distance}.`;
+    };
+    
     axios
-    .post('http://localhost:5000/dijkstra', data)
-    .then((response) => {
-        console.log('Todo ok owo');
-    })
-    .catch((error) => {
-        console.log('un error u.u');
-    });
+        .post('http://localhost:5000/dijkstra', body)
+        .then((response) => {
+            handleResponse(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    
 }
 
 document.getElementById('button-generate-nodes').addEventListener('click', generateManyNodes);

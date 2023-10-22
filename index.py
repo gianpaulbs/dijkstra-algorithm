@@ -32,7 +32,7 @@ def dijkstra():
         index_from = e.get('from') - 1
         index_to = e.get('to') - 1
         weight = int(e.get('label'))
-        aristas.append(Arista(vertices[index_from], vertices[index_to], weight))
+        aristas.append(Arista(Vertice(vertices[index_from]), Vertice(vertices[index_to]), weight))
 
     # aristas = [
     #     Arista(Vertice("A"), Vertice("B"), 2),
@@ -53,7 +53,7 @@ def dijkstra():
     distancia, camino = grafo.dijkstra(inicio, destino)
     return jsonify({
         'distance': distancia,
-        'route': camino
+        'path': camino
     })
 
 app.run(debug=True)
