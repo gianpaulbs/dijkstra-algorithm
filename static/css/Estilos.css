@@ -2,9 +2,10 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family: "Poppins"
 }
-
+body{
+    font-family: 'open sans';
+}
 .contenedor{
     padding: 20px 0;
 
@@ -15,34 +16,32 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .caja {
-    background-color: #203A43;
+    background-color:rgba(107,9,121,1);
     border-radius: 8px;
     padding: 20px;
     margin: 20px 0;
     color: #fff;
 }
+.contenedor-Acerca-de .caja,
+    .contenedor-Historia .caja {
+      width: calc(70% - 500px); 
+      margin-left: 20px;
+    }
+    .caja {
+      transition: transform 0.3s; 
+    }
+    .caja:hover {
+      transform: scale(1.08); 
+    }
 .header{
     width: 100%;
     height: 600px;
-    background: linear-gradient(to right, #52796f, #354f52, #2f3e46); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-size: cover;
+    background-size: cover; /* Ajusta la imagen al tamaño del encabezado */
+    background-position: center; /* Centra la imagen en el encabezado */
+    background-repeat: no-repeat; 
     background-attachment: fixed;
     position: relative;
-}
-
-body{
-        background-color: #84a98c;
-
-}
-
-.color-personalizado {
-    color: #354f52;
-}
-
-
-
-.fondo-personalizado {
-    background-color: #CAD2C5FF;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .wave{
     position:absolute;
@@ -57,22 +56,21 @@ header .textos-header{
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .textos-header h1{
-    font-size: 80px;
+    font-size: 70px;
     color: #fff;
 }
 .textos-header h2{
     padding: 40px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
     color: #fff;
 }
 
 .contenedor-Acerca-de {
-
+    
     display: flex;
     justify-content: space-evenly;
     text-align: justify;
@@ -107,17 +105,18 @@ header .textos-header{
 .imagen-Acerca-de {
     max-width: 100%;
     height: 275px;
-    width: 275px;
-    margin-left: 80px;
+    width: 300px;
+    margin-left: 70px;
     margin-top: 50px;
-
+    margin-bottom: 20px;
 }
 .imagen-historia{
     max-width: 100%;
     height: 250px;
-    width: 250px;
-    margin-left: 80px;
+    width: 325px;
+    margin-left: 70px;
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .contenido-texto-historia {
@@ -129,25 +128,35 @@ header .textos-header{
     text-align: right;
     margin-right: 30px;
 }
-.button-container {
-    font-size: 30px;
-    color: #fff;
-    background-color: #203A43;
-    border: none;
+.button-container {margin-top: 30px; margin-bottom: 50px;
+text-align: center;
+
+}
+.button-application {
+    font-size: 1.5em;
+    background-color: rgba(107,9,121,1);
+    width: calc(20% - 500px); 
+    color: #fff   ;
     border-radius: 8px;
-    padding: 10px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    transition: transform 0.4s;
-    margin-top: 40px; 
-    width: calc(20% - 120px); 
+    position: relative;
+    letter-spacing: .1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    z-index: 1;
+    overflow: hidden;
+    transition: 1s;
+    
  }
- .button-container:hover{
-    background-color: #374b52;
-    transform: scale(0.98); 
+ .button-application:hover{
+    background-color: rgb(223, 22, 250);
+    box-shadow:  0 0 10px rgb(223, 22, 250),
+    0 0 5px rgb(223, 22, 250),
+    0 0 10px rgb(223, 22, 250),
+    0 0 20px rgb(223, 22, 250),
+    0 0 30px rgb(223, 22, 250);
+    border-color: rgb(223, 22, 250);
+
  }
+
+.button-application:hover::before{width: 100%;   }

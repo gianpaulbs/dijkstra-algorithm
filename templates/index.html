@@ -5,29 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{url_for('static', filename='css/Estilos.css')}}">
-  <style>
-    .contenedor-Acerca-de .caja,
-    .contenedor-Historia .caja {
-      width: calc(70% - 500px); 
-      margin-left: 20px;
-    }
-    .caja {
-      transition: transform 0.3s; 
-    }
-    .caja:hover {
-      transform: scale(1.08); 
-    }
-  </style>
+  
 </head>
 <body>
-    <header class="header">
+    <header class="header " style= "background-image: {{url_for('static',filename='img/header.jpg')}};"> 
     <section class="textos-header font-bold "><h1>Algoritmo de Dijkstra</h1>
-        <h2>Encontrar el camino más corto es como buscar una aguja en un pajar, pero Dijkstra lo hace con eficiencia.</h2></section>
+        <h2>Encuentra el camino más corto entre dos puntos.</h2></section>
     <div class ="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-5.64,33.06 C86.34,-58.69 315.46,110.05 500.00,49.98 L588.03,174.19 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path></svg></div>
     </header>
     <main>
       <section class="contenedor">
-        <h2 class="titulo text-4xl text-center font-bold text-cyan-900">Acerca de Dijkstra</h2>
+        <h2 class="titulo text-4xl text-center font-bold text-fuchsia-800">Acerca de Dijkstra</h2>
         <div class="contenedor-Acerca-de">
           <div class="caja">
             
@@ -37,7 +25,7 @@
                 La idea subyacente en este algoritmo consiste en ir explorando todos los caminos más cortos que parten del vértice origen y que llevan a todos los demás vértices; cuando se obtiene el camino más corto desde el vértice origen hasta el resto de los vértices que componen el grafo, el algoritmo se detiene. Se trata de una especialización de la búsqueda de costo uniforme y, como tal, no funciona en grafos con aristas de costo negativo</p>
             </div>
             <div class="imagen-Acerca-de">
-              <img src="{{url_for('static',filename='img/pensante.png')}}" alt="" class="imagen-Acerca-de">
+              <img src="{{url_for('static',filename='img/dijkstra.gif')}}" alt="" class="imagen-Acerca-de">
             </div>
           </div>
           <div class="caja">
@@ -49,11 +37,11 @@
               </p>
             </div>
             <div class="imagen-historia">
-              <img src="{{url_for('static',filename='img/historia.png')}}" alt="" class="imagen-historia">
+              <img src="{{url_for('static',filename='img/edger.jpg')}}" alt="" class="imagen-historia">
             </div>
           </div>
         </div>
-        <div class="button-container font-bold">
+        <div class="button-container font-bold ">
           <a href="/application" class="button-application">   PROBAR   </a>
         </div>
       </section>
