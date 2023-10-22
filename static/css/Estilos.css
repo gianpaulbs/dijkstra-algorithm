@@ -2,10 +2,9 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: "Poppins"
 }
-body{
-    font-family: 'open sans';
-}
+
 .contenedor{
     padding: 20px 0;
 
@@ -25,13 +24,25 @@ body{
 .header{
     width: 100%;
     height: 600px;
-    background: #0F2027;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #52796f, #354f52, #2f3e46); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: cover;
     background-attachment: fixed;
     position: relative;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+        background-color: #84a98c;
+
+}
+
+.color-personalizado {
+    color: #354f52;
+}
+
+
+
+.fondo-personalizado {
+    background-color: #CAD2C5FF;
 }
 .wave{
     position:absolute;
@@ -46,6 +57,7 @@ header .textos-header{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .textos-header h1{
@@ -60,7 +72,7 @@ header .textos-header{
 }
 
 .contenedor-Acerca-de {
-    
+
     display: flex;
     justify-content: space-evenly;
     text-align: justify;
