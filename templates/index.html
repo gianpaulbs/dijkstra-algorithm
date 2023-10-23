@@ -8,20 +8,22 @@
 
 </head>
 <body>
-
     <header class="header " style= "background-image: url(&apos;{{url_for('static',filename='img/header.jpg')}}&apos;);"> 
-      <nav class="navigation">
-       <a href="#integrantes">Integrantes</a>
-      <a href="/application">Aplicación</a>
+      <nav class="nav">
+        <div class="logo">GRUPO 02</div>
+        <ul class="menu">
+       <li><a href="#integrantes">Integrantes</a></li>
+       <li><a href="/application">Aplicación</a></li>
+      </ul>
     </nav>
     <section class="textos-header font-bold "><h1>Algoritmo de Dijkstra</h1>
         <h2>Encuentra el camino más corto entre dos puntos.</h2></section>
     <div class ="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-5.64,33.06 C86.34,-58.69 315.46,110.05 500.00,49.98 L588.03,174.19 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path></svg></div>
     </header>
-
+    
     <main>
       <section class="contenedor">
-        <h2 class="titulo text-4xl text-center font-bold text-purple-950">Acerca de Dijkstra</h2>
+        <h2 class="titulo1 text-4xl text-center font-bold text-purple-950">Acerca de Dijkstra</h2>
         <div class="contenedor-Acerca-de">
           <div class="caja">
             
@@ -130,6 +132,9 @@
         </div>
       </section>
     </main>
+    <div class="scrol"></div>
+    <!-- Import menu -->
+    <script src="{{url_for('static', filename='js/menu.js')}}"></script>
     <footer class="footer">
         <p>© 2023 grupo 2 mate computacional</p>
     </footer>
