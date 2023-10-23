@@ -249,11 +249,11 @@ text-align: center;
 
 /* integrantes*/
 .integrantes .gen{
-    margin-top: 40px;
     display: flex;
     text-align: center;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 40px 20% 20px 20%;
 }
 .integrantes .card {
     width: 300px;
@@ -261,11 +261,13 @@ text-align: center;
     background: #fff;
     border-radius: 5px;
     overflow: hidden;
-    margin: 0 20px; /* Espacio entre las tarjetas */
+    margin: 0 3.2%; /* Espacio entre las tarjetas */
     transition: 0.5s;
+    margin-bottom: 8%;
+    box-shadow:  0 0 5px #000;
 }
 .integrantes .card:hover {
-    box-shadow: 0 5px 15px #4d1f3b;
+    box-shadow: 0 5px 20px #4d1f3b;
     transform: translateY(-15px);
 }
 .integrantes .card .head{
@@ -303,7 +305,6 @@ text-align: center;
     padding: 40px 20px 20px 20px;
     border-bottom: solid 1px #2e0f32;
     text-align: center;
-    border: 1px solid #ccc;
 }
 .integrantes .card .description h3{
     color: #2e0f32;
@@ -314,6 +315,14 @@ text-align: center;
 .integrantes .card .description p{
     margin-top: 20px;
     font-size: 15px;
+}
+.integrantes .card .codigo{
+    height: 200px;
+    padding: 8px 20px 20px 20px;
+    text-align: center;
+}
+.integrantes .card .codigo h3{
+    color: #4d1f3b;
 }
 .titulo {
     margin-top: 40px;
