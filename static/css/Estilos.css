@@ -7,6 +7,17 @@ body{
 
     font-family: 'open sans';
 }
+nav{
+    text-align: right;
+    padding: 30px 50px 0 0;
+    
+}
+nav>a{
+    color: #fff;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: 10px;
+}
 /*general*/
 .contenedor{
     padding: 20px 0;
@@ -35,10 +46,21 @@ body{
     padding: 20px;
     margin: 20px 0;
     color: #fff;
+    display: flex;
+    flex-direction: column;
 }
 .contenedor h2{
     margin-bottom: 50px;
 }
+.tit_que,
+.tit_his {
+    max-width: 87.5%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .contenedor-Acerca-de .caja,
     .contenedor-Historia .caja {
       width: calc(70% - 500px); 
@@ -119,20 +141,28 @@ header .textos-header{
     margin-bottom: 80px;
 }
 .imagen-Acerca-de {
-    max-width: 100%;
-    height: 275px;
-    width: 300px;
-    margin-left: 70px;
-    margin-top: 50px;
+    max-width: 70%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
     margin-bottom: 20px;
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.imagen-historia{
-    max-width: 100%;
-    height: 250px;
-    width: 325px;
-    margin-left: 70px;
-    margin-top: 50px;
+.imagen-historia {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
     margin-bottom: 20px;
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contenido-texto-historia {
@@ -254,5 +284,4 @@ text-align: center;
     font-size: 2rem;
     font-weight: bold;
     color: #800080;
-/* Espacio entre el título y las tarjetas */
 }
