@@ -1,102 +1,137 @@
 <!doctype html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Algoritmo de Dijkstra</title>
-    <link href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/Estilos.css')}}">
 
-    <link rel="stylesheet" href="{{url_for('static', filename='css/Estilos.css')}}">
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700 &display=swap");
-
-        html {
-            font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        }
-    </style>
 </head>
+<body>
 
-<header>
-    <nav class="flex justify-center space-x-8">
-        <a href="/" class="text-lg font-semibold hover:text-gray-200 transition duration-300">Inicio</a>
-        <a href="/application" class="text-lg font-semibold hover:text-gray-200 transition duration-300">Aplicación</a>
-        <a href="/about" class="text-lg font-semibold hover:text-gray-200 transition duration-300">Acerca de</a>
+    <header class="header " style= "background-image: url(&apos;{{url_for('static',filename='img/header.jpg')}}&apos;);"> 
+      <nav class="navigation">
+       <a href="#integrantes">Integrantes</a>
+      <a href="/application">Aplicación</a>
     </nav>
-</header>
+    <section class="textos-header font-bold "><h1>Algoritmo de Dijkstra</h1>
+        <h2>Encuentra el camino más corto entre dos puntos.</h2></section>
+    <div class ="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-5.64,33.06 C86.34,-58.69 315.46,110.05 500.00,49.98 L588.03,174.19 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path></svg></div>
+    </header>
 
-<body class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed"
-    style="background-image: url('static/img/header.jpg');">
-    <div class="h-full">
-        <br><br><br><br>
-        <h1 class="my-4 text-6xl md:text-7xl text-white opacity-90 font-bold leading-tight text-center md:text-center;">
-            Algoritmo de
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
-                Dijkstra
-            </span>
-        </h1>
-        <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-center">
-            Encuentra el camino más corto entre dos puntos.
-        </p>
-
-        <div class="flex justify-center pt-4">
-            <button
-                class="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                type="button">
-                Probar
-            </button>
+    <main>
+      <section class="contenedor">
+        <h2 class="titulo text-4xl text-center font-bold text-purple-950">Acerca de Dijkstra</h2>
+        <div class="contenedor-Acerca-de">
+          <div class="caja">
+            
+            <div class="texto-caja">
+              <h3 class="tit_que">1. ¿Qué es Dijkstra?</h3>
+              <p>El algoritmo de Dijkstra, también llamado algoritmo de caminos mínimos, es un algoritmo para la determinación del camino más corto, dado un vértice origen, hacia el resto de los vértices en un grafo que tiene pesos en cada arista.
+                La idea subyacente en este algoritmo consiste en ir explorando todos los caminos más cortos que parten del vértice origen y que llevan a todos los demás vértices; cuando se obtiene el camino más corto desde el vértice origen hasta el resto de los vértices que componen el grafo, el algoritmo se detiene. Se trata de una especialización de la búsqueda de costo uniforme y, como tal, no funciona en grafos con aristas de costo negativo</p>
+            </div>
+            <div class="imagen-Acerca-de">
+              <img src="{{url_for('static',filename='img/dijkstra.gif')}}" alt="" class="imagen-Acerca-de">
+            </div>
+          </div>
+          <div class="caja">
+            
+            <div class="texto-caja">
+              <h3 class="tit_his">2. Historia</h3>
+              <p>
+                El algoritmo de Dijkstra, desarrollado por Edsger W. Dijkstra en 1956, se creó para encontrar la ruta más corta en una red de carreteras. Sin embargo, su utilidad se ha extendido a la informática y otros campos. Este algoritmo es fundamental en la teoría de grafos y la informática, y se utiliza para determinar rutas óptimas en diversas redes. Su idea central es seleccionar iterativamente el nodo más cercano no visitado y actualizar las distancias a sus vecinos no visitados. Esto asegura que, cuando un nodo se marca como visitado, su distancia desde el nodo de origen sea la más corta posible. La eficiencia y simplicidad del algoritmo lo convierten en una herramienta valiosa para resolver problemas relacionados con la búsqueda de rutas más cortas en diversas aplicaciones.
+              </p>
+            </div>
+            <div class="imagen-historia">
+              <img src="{{url_for('static',filename='img/edger.jpg')}}" alt="" class="imagen-historia">
+            </div>
+          </div>
         </div>
-        <br>
-        <div class="w-full p-12 overflow-hidden">
-            <img class="imagen-centrada mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
-                src="static/img/historia.png" />
+        <div class="button-container font-bold ">
+          <a href="/application" class="button-application">   PROBAR   </a>
         </div>
-
-
-        <main class="container mx-auto p-20">
-            <section class="grid grid-cols-1 sm:grid-cols-2 gap-8 mx-4">
-                <div class="bg-gray-900 opacity-90 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
-                    <h2 class="titulo text-3xl text-center font-bold text-gray-300 py-2 font-bold mb-2">Acerca de
-                        Dijkstra</h2>
-                    <p style="text-align: justify;">
-                        El algoritmo de Dijkstra busca el camino más corto entre un punto de inicio y otros puntos en un
-                        grafo con
-                        aristas de peso. Explora minuciosamente todas las rutas posibles desde el punto de inicio hasta
-                        los demás
-                        puntos y detiene cuando encuentra la ruta más corta. No es adecuado para grafos con costos
-                        negativos.
-                    </p><br>
-                    <img src="static/img/dijkstra.gif" alt="Aplicacion del algoritmo del camino mas corto"
-                        class="imagen-centrada w-full">
-                </div>
-                <div class="bg-gray-900 opacity-90 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
-                    <h2 class="titulo text-3xl text-center font-bold text-gray-300 py-2 font-bold mb-2">Historia</h2>
-                    <p style="text-align: justify;">
-                        Edsger W. Dijkstra desarrolló el algoritmo de Dijkstra en 1956 mientras trabajaba en la
-                        Universidad Técnica
-                        de Eindhoven en los Países Bajos, para encontrar rutas más cortas en carreteras, pero luego se
-                        dio cuenta de
-                        sus usos en ciencia de la computación y otros campos.
-                    </p><br>
-                    <img src="static/img/edger.jpg" alt="Edger Dijkstra, inventor del algoritmo"
-                        class="imagen-centrada w-full">
-                </div>
-            </section>
-        </main>
-
-        <div class="w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">
-            <a class="text-gray-500 no-underline hover:no-underline" href="#">&copy; Matemática Computacional</a>
-            - Desarrollado por
-            <a class="text-gray-500 no-underline hover:no-underline" href="https://www.tailwindtoolbox.com">Equipo 2</a>
+      </section>
+      <section class="integrantes"id="integrantes">
+        <h1 class="titulo text-4xl font-bold text-purple-950">Integrantes</h1>
+        <div class="gen">
+        <div class="card">
+          <div class ="head">
+          <div class="circle"></div>
+          <div class="img">
+            <img src="{{url_for('static',filename='img/cris.jpg')}}" alt="">
+          </div>
+          </div>
+      
+          <div class="description">
+            <h3 class="pj font-bold text-xl">Christian Velazques</h3>
+            <h4 class="pjt font-bold">Ciencias de la Computacion</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
+          </div>
         </div>
-    </div>
-</body>
-
-</html>
-</div>
-</body>
-
-</html>
-
+        <div class="card">
+          <div class ="head">
+          <div class="circle"></div>
+          <div class="img">
+            <img src="{{url_for('static',filename='img/joaquin.jpg')}}" alt="">
+          </div>
+          </div>
+      
+          <div class="description">
+            <h3 class="pj font-bold text-xl">Joaquin Eguia</h3>
+            <h4 class="pjt font-bold">Ciencias de la Computacion</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
+          </div>
+          
+        </div>
+        <div class="card">
+          <div class ="head">
+          <div class="circle"></div>
+          <div class="img">
+            <img src="{{url_for('static',filename='img/gp1.jpg')}}" alt="">
+          </div>
+          </div>
+      
+          <div class="description">
+            <h3 class="pj font-bold text-xl">Gianpaul Bernal</h3>
+            <h4 class="pjt font-bold">Ciencias de la Computacion</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
+          </div>
+          
+        </div>
+        <div class="card">
+          <div class ="head">
+          <div class="circle"></div>
+          <div class="img">
+            <img src="{{url_for('static',filename='img/dan.jpg')}}" alt="">
+          </div>
+          </div>
+      
+          <div class="description">
+            <h3 class="pj font-bold text-xl">Daniella Vargas</h3>
+            <h4 class="pjt font-bold">Ciencias de la Computacion</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
+          </div>
+          
+        </div>
+        <div class="card">
+          <div class ="head">
+          <div class="circle"></div>
+          <div class="img">
+            <img src="{{url_for('static',filename='img/kim.jpg')}}" alt="">
+          </div>
+          </div>
+      
+          <div class="description">
+            <h3 class="pj font-bold text-xl">Kim Jurado</h3>
+            <h4 class="pjt font-bold">Ingenieria de sistemas</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
+          </div>
+        </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+        <p>© 2023 grupo 2 mate computacional</p>
+    </footer>
+</body> 
 </html>
