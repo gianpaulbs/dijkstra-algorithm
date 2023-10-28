@@ -1,6 +1,25 @@
 import { Matrix } from './matrix.js';
 
-const alphabet = 'ABCDEFGHIJKLMNO';
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const shuffledAlphabet = [...alphabet];
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function getUniqueRandomLabel() {
+  if (shuffledAlphabet.length > 0) {
+    const label = shuffledAlphabet.pop();
+    return label;
+  }
+  return null;
+}
+
+shuffleArray(shuffledAlphabet);
+
 const matrix = new Matrix();
 const data = {
     nodes: new vis.DataSet(), 
@@ -14,8 +33,7 @@ const getTotalNodes = () => {
 const addNode = (node, commit) => {
     if (getTotalNodes() > 15) return;
 
-    node.id = getTotalNodes() + 1;
-    node.label = alphabet[getTotalNodes()];
+    node.label = getUniqueRandomLabel();
     commit(node);
 
     matrix.nodes = data.nodes.get();
@@ -25,15 +43,12 @@ const addNode = (node, commit) => {
 
 const deleteNode = (node, commit) => {
     commit(node);
-
+    matrix.removeRowAndColumnByNodeId(node.nodes[0]);
     matrix.nodes = data.nodes.get();
-    matrix.removeRowAndColumn(node.id);
-    matrix.draw();
+    matrix.draw();  
 }
 
 const addEdge = (edge, commit) => {
-    const originIndex = edge.from - 1;
-    const targetIndex = edge.to - 1;
     let weight = prompt('Ingrese el peso de la arista');
 
     while (parseFloat(weight) <= 0) {
@@ -47,8 +62,16 @@ const addEdge = (edge, commit) => {
     edge.label = weight;
     commit(edge);
 
-    matrix.edges = data.edges.get();
-    matrix.setRelation(originIndex, targetIndex, weight);
+    matrix.setRelation(edge.from, edge.to, weight);
+    matrix.draw();
+}
+
+const deleteEdge = (edge, commit) => {
+    const targetEdge = data.edges.get().find(e => e.id === edge.edges[0]);
+    commit(edge);
+
+    console.log(targetEdge);
+    matrix.setRelation(targetEdge.from, targetEdge.to, 0);
     matrix.draw();
 }
 
@@ -58,13 +81,12 @@ const generateManyNodes = () => {
 
     for (let i = 0; i < Math.abs(missingNodes); i++) {
         if (missingNodes < 0) {
-            data.nodes.remove(getTotalNodes());
-            matrix.removeRowAndColumn();
+            data.nodes.remove(data.nodes.get()[getTotalNodes() - 1].id);
+            matrix.removeRowAndColumnByIndex();
         } else {
-            const id = getTotalNodes() + 1;
-            const label = alphabet[getTotalNodes()];
+            const label = getUniqueRandomLabel();
     
-            data.nodes.add({ id, label });
+            data.nodes.add({ label });
             matrix.addRowAndColumn();
         }
     }
@@ -75,8 +97,8 @@ const generateManyNodes = () => {
 
 const findShortestPath = () => {
     const body = {
-        nodes: matrix.nodes,
-        edges: matrix.edges
+        nodes: data.nodes.get(),
+        edges: data.edges.get()
     };
 
     const setEdgeColors = (path) => {
@@ -121,12 +143,13 @@ const findShortestPath = () => {
 document.getElementById('button-generate-nodes').addEventListener('click', generateManyNodes);
 document.getElementById('button-shortest-path').addEventListener('click', findShortestPath);
 
-const container = document.getElementById('network');
+const container = document.getElementById('network-panel');
 const manipulation = {
     initiallyActive: true,
     addNode: addNode,
     addEdge: addEdge,
-    deleteNode: deleteNode
+    deleteNode: deleteNode,
+    deleteEdge: deleteEdge
 };
 
 const options = { 

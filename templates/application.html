@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,6 @@
     <!-- Import Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
     <nav>
         <a href="/" class="text-cyan-900">Inicio</a>
@@ -45,9 +43,17 @@
             <option value="15">15</option>
         </select>
         <button id="button-generate-nodes">Generar</button>
-        <button id="button-shortest-path">Dijkstra</button>
     </div>
-    <div id="network"></div>
+    <div class="grid grid-cols-3 container-application">
+        <div id="network-panel" class="col-span-2"></div>
+        <div id="messages-panel" class="col-span-1">
+            <div class="head-messages-panel">Mensajes del sistema</div>
+            <div class="start-messages-panel">
+                <p>Todavía no hay algo aquí... ¿Y si pruebas añadiendo nuevos nodos y aristas para formar un grafo? 👀</p>
+            </div>
+            <button id="button-shortest-path">Dijkstra</button>
+        </div>
+    </div>
 
     <div id="server-response">
         <h2 id="message"></h2>        

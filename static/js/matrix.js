@@ -2,7 +2,6 @@ export class Matrix {
     constructor() {
         this.data = [];
         this.nodes = [];
-        this.edges = [];
         this.length = 0;
     }
 
@@ -18,7 +17,9 @@ export class Matrix {
         }
     };
 
-    removeRowAndColumn(index = this.length - 1) {
+    removeRowAndColumnByNodeId(nodeId) {
+        const index = this.getIndexFromNodeId(nodeId);
+
         for (let i = 0; i < this.length; i++) {
             this.data[i].splice(index, 1);
         }
@@ -26,8 +27,27 @@ export class Matrix {
         this.data.splice(index, 1);
         this.length--;
     }
+
+    removeRowAndColumnByIndex() {
+        const index = this.length - 1;
+        console.log(index);
+
+        /* Elimina columnas */
+        for (let i = 0; i < this.length; i++) {
+            this.data[i].splice(index, 1);
+        }
+
+        /* Elimina la fila */
+        this.data.splice(index, 1);
+
+        /* Disminuye la longitud de la matriz */
+        this.length--;
+    }
     
-    setRelation(originIndex, targetIndex, weight) {
+    setRelation(from, to, weight) {
+        const originIndex = this.getIndexFromNodeId(from);
+        const targetIndex = this.getIndexFromNodeId(to); 
+
         this.data[originIndex][targetIndex] = weight;
         this.data[targetIndex][originIndex] = weight;
     }
@@ -74,5 +94,15 @@ export class Matrix {
 
         table.appendChild(thead);
         table.appendChild(tbody);
+    }
+
+    getIndexFromNodeId(nodeId) {
+        const nodeIdToIndex = {};
+
+        this.nodes.forEach((node, index) => {
+            nodeIdToIndex[node.id] = index;
+        });
+
+        return nodeIdToIndex[nodeId];
     }
 }
