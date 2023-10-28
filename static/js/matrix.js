@@ -30,17 +30,12 @@ export class Matrix {
 
     removeRowAndColumnByIndex() {
         const index = this.length - 1;
-        console.log(index);
 
-        /* Elimina columnas */
         for (let i = 0; i < this.length; i++) {
             this.data[i].splice(index, 1);
         }
 
-        /* Elimina la fila */
         this.data.splice(index, 1);
-
-        /* Disminuye la longitud de la matriz */
         this.length--;
     }
     

@@ -70,7 +70,6 @@ const deleteEdge = (edge, commit) => {
     const targetEdge = data.edges.get().find(e => e.id === edge.edges[0]);
     commit(edge);
 
-    console.log(targetEdge);
     matrix.setRelation(targetEdge.from, targetEdge.to, 0);
     matrix.draw();
 }
