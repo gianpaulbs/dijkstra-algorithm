@@ -1,16 +1,143 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box !important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body{
+
+    font-family: 'open sans';
+}
+.header{
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    margin-bottom: 30px;
+}
+.info-head{
+    max-width: 70%;
+    flex-wrap: wrap;
+    overflow: hidden;
+   
+    font-size: 20px;
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 9%;
+
+}
+/*nav*/
+.nav{
+    text-align: right;
+    position: fixed;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    font-family: 'PT Sans',sans-serif;
+    justify-content: space-between;
+    padding:25px ;
+    transition: all 0.5s ease;
+
+}
+.nav.active {
+    z-index: 999;
+    background: #fff;
+    box-shadow:  0 0 10px #000;
+    padding: 15px;
+}
+.nav.active .logo, .nav.active a{
+    color: #2e0f32;
+}
+.nav.active a:hover{
+    background: #2e0f32;
+    color: #fff;
+}
+.logo{
+    font-size: 25px;
+    color: #2e0f32 ;
+    font-weight: 100;
+    margin-left: 10px;
+    letter-spacing: .1em;
+}
+.menu{
+    display: flex;
+}
+.menu li{
+    list-style: none;
+    margin: 10px;
+}
+.menu li a{
+
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    color: #2e0f32;
+}
+.menu li a:hover{
+    padding: 5px 10px;
+    background: #2e0f32;
+    color: #fff;
+    border-radius: 15px;
+}
+.scrol{
+    height: 100px;
+}
+
+
 #network {
     margin:auto;
-    margin-top: 40px;
-    width: 80%;
-    height: 400px;
-  
+    margin-top: 60px;
+    width: 70%;
+    height: 60%;
     border: 2px solid lightgray;
 
     background-color: #f8f9fa; 
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    box-shadow: 0 4px 7px 0 #000; 
     
 }
+#button-generate-nodes,
+#button-shortest-path {
+    position: relative;
+    display: inline-block;
+    font-size: 100%;
+    letter-spacing: .1em;
+    color: #2e0f32;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 2px solid #2e0f32;
+    padding: 10px 30px;
+    margin: 3% 2%;  
+    width:20%;
+    border-radius: 8px;
+    z-index: 1;
+    overflow: hidden;
+    transition: color 1s, box-shadow 1s;
+    transition-delay: 0s,1s;
+    cursor: pointer;
+}
+.botones>a:hover{
+    color: #fff !important;
 
+
+}
+.botones>a::before {
+    content: ' ';
+    position: absolute;
+    top: 0  ;
+    left: -20% ;
+    width:0 ;
+    height: 100%;
+    background: #2e0f32;
+    transform: skewX(35deg);
+    transition: 1s;
+    z-index: -1 ;
+}
+.botones>a:hover:before {
+    width: 100%;
+    
+}
 .Aplicacion{
     margin-left: 40px;
 
@@ -24,17 +151,21 @@
    margin-bottom: 30px;
 
 }
-
 #matrix {
     width: 40%;
     margin: auto; 
     margin-top: 40px;
     background-color: #f8f9fa; 
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 #000;
     padding: 20px; 
+    transition: transform 0.3s;
+    margin-bottom: 5%;
+    margin-top: 3%;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
+#matrix:hover{
+    transform: scale(1.05); 
+}
 #matrix-body {
     width: 100%;
     border-collapse: collapse; 
@@ -58,37 +189,6 @@ body {
     box-sizing: border-box;
 }
 
-.info-head {
-    
-    font-size: 20px;
-    font-weight: bold;
-    color: #4a4a4a;
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Helvetica Neue', sans-serif;
-
-    
-}
-
-#button-generate-nodes,
-#button-shortest-path {
-    font-size: 20px;
-    color: #fff;
-    background-color: #203A43;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#button-generate-nodes:hover {
-    background-color: #374b52;
-}
 
 .footer{
     text-align: right;
