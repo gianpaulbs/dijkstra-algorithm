@@ -186,7 +186,6 @@ header .textos-header{
 .imagen-Acerca-de {
     max-width: 70%;
     height: auto;
-    display: block;
     margin: 0 auto;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -198,7 +197,6 @@ header .textos-header{
 .imagen-historia {
     max-width: 80%;
     height: auto;
-    display: block;
     margin: 0 auto;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -336,4 +334,20 @@ text-align: center;
     font-size: 2rem;
     font-weight: bold;
     color: #800080;
+}
+/*footer*/
+.footer {
+    max-width: 70%;
+    background-color: #2e0f32;
+    padding: 3% 10%;
+    margin-left: 14.5%;
+    color: #fff;
+    text-align: center; /* Centrar el texto horizontalmente */
+    font-size: 14px;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
 }
