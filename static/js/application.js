@@ -4,30 +4,34 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const shuffledAlphabet = [...alphabet];
 
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 function getUniqueRandomLabel() {
-  if (shuffledAlphabet.length > 0) {
-    const label = shuffledAlphabet.pop();
-    return label;
-  }
-  return null;
+    if (shuffledAlphabet.length > 0) {
+        const label = shuffledAlphabet.pop();
+        return label;
+    }
+    return null;
 }
 
 shuffleArray(shuffledAlphabet);
 
 const matrix = new Matrix();
 const data = {
-    nodes: new vis.DataSet(), 
+    nodes: new vis.DataSet(),
     edges: new vis.DataSet()
 }
 
 const getTotalNodes = () => {
     return data.nodes.length;
+}
+
+const getTotalEdges = () => {
+    return data.edges.length;
 }
 
 const addNode = (node, commit) => {
@@ -43,9 +47,10 @@ const addNode = (node, commit) => {
 
 const deleteNode = (node, commit) => {
     commit(node);
+
     matrix.removeRowAndColumnByNodeId(node.nodes[0]);
     matrix.nodes = data.nodes.get();
-    matrix.draw();  
+    matrix.draw();
 }
 
 const addEdge = (edge, commit) => {
@@ -55,7 +60,7 @@ const addEdge = (edge, commit) => {
         weight = prompt('Ingrese un peso válido (número positivo)');
     }
 
-    while (weight>='A' && weight<='z') {
+    while (weight >= 'A' && weight <= 'z') {
         weight = prompt('Ingrese un peso válido (número positivo), no un caracter');
     }
 
@@ -84,17 +89,36 @@ const generateManyNodes = () => {
             matrix.removeRowAndColumnByIndex();
         } else {
             const label = getUniqueRandomLabel();
-    
+
             data.nodes.add({ label });
             matrix.addRowAndColumn();
         }
     }
-    
+
     matrix.nodes = data.nodes.get();
     matrix.draw();
 }
 
+const existGraphInPanel = () => {
+    return getTotalNodes() > 0 && getTotalEdges() > 0;
+}
+
+const clearAll = () => {
+    data.nodes.clear();
+    data.edges.clear();
+    matrix.reset();
+}
+
 const findShortestPath = () => {
+    if (!existGraphInPanel()) return;
+
+    network.setOptions({
+        interaction: {
+            multiselect: true
+        }
+    });
+
+    /*
     const body = {
         nodes: data.nodes.get(),
         edges: data.edges.get()
@@ -137,12 +161,14 @@ const findShortestPath = () => {
         .catch((error) => {
             console.log(error);
         });
+    */
 }
 
 document.getElementById('button-generate-nodes').addEventListener('click', generateManyNodes);
 document.getElementById('button-shortest-path').addEventListener('click', findShortestPath);
+document.getElementById('button-clear-all').addEventListener('click', clearAll);
 
-const container = document.getElementById('network-panel');
+const container = document.getElementById('network');
 const manipulation = {
     initiallyActive: true,
     addNode: addNode,
@@ -151,14 +177,40 @@ const manipulation = {
     deleteEdge: deleteEdge
 };
 
-const options = { 
+const options = {
     locale: 'es',
     manipulation: manipulation,
     edges: {
         smooth: {
             type: 'continuous'
         }
+    },
+    interaction: {
+        multiselect: false
     }
 }
 
-new vis.Network(container, data, options);
+const network = new vis.Network(container, data, options);
+
+const isMultiselectActive = () => {
+    return network.selectionHandler.options.multiselect;
+}
+
+network.on('selectNode', function (event) {
+    const selectedNodes = event.nodes;
+
+    if (isMultiselectActive() && selectedNodes.length == 2) {
+        network.body.nodes[selectedNodes[0]].options.color.highlight = {
+            background: '#81e776',
+            border: '#2B7CE9'
+        };
+
+        network.body.nodes[selectedNodes[1]].options.color.highlight = {
+            background: '#e77676',
+            border: '#2B7CE9'
+        };
+
+        network.body.nodes[selectedNodes[0]].options.color.background = '#5af24a';
+        network.body.nodes[selectedNodes[1]].options.color.background = '#f24a4a';
+    }
+});

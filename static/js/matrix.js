@@ -47,6 +47,12 @@ export class Matrix {
         this.data[targetIndex][originIndex] = weight;
     }
 
+    reset() {
+        this.nodes = [];
+        this.data = [];
+        this.draw();
+    }
+
     draw() {
         const table = document.getElementById('matrix-body');
         let thead = table.querySelector('thead');
@@ -54,6 +60,7 @@ export class Matrix {
 
         if (thead) {
             thead.remove();
+            thead.innerHTML = '';
         }
         
         if (tbody) {
@@ -86,7 +93,7 @@ export class Matrix {
             
             tbody.appendChild(tbodyRow);
         }
-
+        
         table.appendChild(thead);
         table.appendChild(tbody);
     }
