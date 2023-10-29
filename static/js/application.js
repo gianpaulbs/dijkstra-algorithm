@@ -1,6 +1,7 @@
 import { Matrix } from './matrix.js';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const selectedNodesFromServer = [];
 const shuffledAlphabet = [...alphabet];
 
 function shuffleArray(array) {
@@ -43,6 +44,7 @@ const addNode = (node, commit) => {
     matrix.nodes = data.nodes.get();
     matrix.addRowAndColumn();
     matrix.draw();
+    toggleMatrixContainer();
 }
 
 const deleteNode = (node, commit) => {
@@ -51,6 +53,7 @@ const deleteNode = (node, commit) => {
     matrix.removeRowAndColumnByNodeId(node.nodes[0]);
     matrix.nodes = data.nodes.get();
     matrix.draw();
+    toggleMatrixContainer();
 }
 
 const addEdge = (edge, commit) => {
@@ -79,6 +82,13 @@ const deleteEdge = (edge, commit) => {
     matrix.draw();
 }
 
+const toggleMatrixContainer = () => {
+    if (getTotalNodes() > 0)
+        matrixContainer.style.display = 'block';
+    else
+        matrixContainer.style.display = 'none';
+}
+
 const generateManyNodes = () => {
     const selectDimensionMatrix = document.getElementById("select-matrix-dimension");
     const missingNodes = selectDimensionMatrix.value - getTotalNodes();
@@ -97,6 +107,7 @@ const generateManyNodes = () => {
 
     matrix.nodes = data.nodes.get();
     matrix.draw();
+    toggleMatrixContainer();
 }
 
 const existGraphInPanel = () => {
@@ -107,21 +118,62 @@ const clearAll = () => {
     data.nodes.clear();
     data.edges.clear();
     matrix.reset();
+    toggleMatrixContainer();
 }
 
-const findShortestPath = () => {
+const cancelAll = () => {
+    network.setOptions({
+        interaction: {
+            multiselect: false
+        }
+    });
+
+    selectedNodesFromServer.splice(0);
+    toggleMainDijkstraView();
+}
+
+const toggleMainDijkstraView = () => {
+    const dijkstraButtonsDisplay = dijkstraButtonsContainer.style.visibility;
+
+    if (dijkstraButtonsDisplay === 'visible') {
+        dijkstraButtonsContainer.style.visibility = 'hidden';
+        dijkstraButtonsContainer.style.height = 0;
+        mainButtonsContainer.style.visibility = 'visible';
+        mainButtonsContainer.style.height = 'auto';
+        messageContainer.style.display = 'none';
+    }
+    else {
+        dijkstraButtonsContainer.style.visibility = 'visible';
+        dijkstraButtonsContainer.style.height = 'auto';
+        mainButtonsContainer.style.visibility = 'hidden';
+        mainButtonsContainer.style.height = 0;
+        messageContainer.style.display = 'block';
+    }
+}
+
+const changeDijkstraView = () => {
     if (!existGraphInPanel()) return;
 
+    message.innerHTML = 'Seleccione el nodo de partida y de llegada usando las teclas <b>CTRL + Click</b>.';
     network.setOptions({
         interaction: {
             multiselect: true
         }
     });
+    
+    toggleMainDijkstraView();
+}
 
-    /*
+const findShortesPath = () => {
+    if (selectedNodesFromServer.length == 0) {
+        alert('Selecciona 2 nodos para calcular el camino mas corto.');
+        return;
+    }
+
     const body = {
         nodes: data.nodes.get(),
-        edges: data.edges.get()
+        edges: data.edges.get(),
+        selected: selectedNodesFromServer
     };
 
     const setEdgeColors = (path) => {
@@ -143,14 +195,13 @@ const findShortestPath = () => {
     };
 
     const handleResponse = (data) => {
-        const messageContainer = document.getElementById('message');
         const path = data.path;
         const pathLength = path.length;
         const startNode = path[0].node;
         const endNode = path[pathLength - 1].node;
 
         setEdgeColors(path);
-        messageContainer.textContent = `La distancia más corta entre ${startNode} y ${endNode} es ${data.distance}.`;
+        message.textContent = `La distancia más corta entre ${startNode} y ${endNode} es ${data.distance}.`;
     };
     
     axios
@@ -161,14 +212,21 @@ const findShortestPath = () => {
         .catch((error) => {
             console.log(error);
         });
-    */
 }
 
 document.getElementById('button-generate-nodes').addEventListener('click', generateManyNodes);
-document.getElementById('button-shortest-path').addEventListener('click', findShortestPath);
+document.getElementById('button-toggle-dijkstra').addEventListener('click', changeDijkstraView);
 document.getElementById('button-clear-all').addEventListener('click', clearAll);
+document.getElementById('button-cancel-all').addEventListener('click', cancelAll);
+document.getElementById('button-find-shortest-path').addEventListener('click', findShortesPath);
 
-const container = document.getElementById('network');
+const matrixContainer = document.getElementById('matrix');
+const networkContainer = document.getElementById('network');
+const messageContainer = document.getElementById('message-container');
+const message = document.getElementById('message');
+const mainButtonsContainer = document.getElementById('main-buttons');
+const dijkstraButtonsContainer = document.getElementById('dijkstra-buttons');
+
 const manipulation = {
     initiallyActive: true,
     addNode: addNode,
@@ -190,7 +248,7 @@ const options = {
     }
 }
 
-const network = new vis.Network(container, data, options);
+const network = new vis.Network(networkContainer, data, options);
 
 const isMultiselectActive = () => {
     return network.selectionHandler.options.multiselect;
@@ -212,5 +270,10 @@ network.on('selectNode', function (event) {
 
         network.body.nodes[selectedNodes[0]].options.color.background = '#5af24a';
         network.body.nodes[selectedNodes[1]].options.color.background = '#f24a4a';
+
+        const originNodeLabel = network.body.nodes[selectedNodes[0]].options.label;
+        const targetNodeLabel = network.body.nodes[selectedNodes[1]].options.label;
+        selectedNodesFromServer.push({ id: selectedNodes[0], label: originNodeLabel });
+        selectedNodesFromServer.push({ id: selectedNodes[1], label: targetNodeLabel });
     }
 });

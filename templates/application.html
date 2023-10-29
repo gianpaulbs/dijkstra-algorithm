@@ -45,15 +45,21 @@
             </select>
         </div>
 
-        <div id="network"></div>
-        <div id="server-response">
-            <h2 id="message"></h2>
+        <div id="message-container" class="m-auto">
+            <p id="message"></p>
         </div>
-        <div class="botones w-full flex justify-center ">
+
+        <div id="network"></div>
+        <div id="main-buttons" class="botones w-full flex justify-center">
             <a class="text-center" id="button-generate-nodes">Generar</a>
-            <a class="text-center" id="button-shortest-path">Dijkstra</a>
+            <a class="text-center" id="button-toggle-dijkstra">Dijkstra</a>
             <a class="text-center" id="button-clear-all">Reiniciar</a>
         </div>
+        <div id="dijkstra-buttons" class="botones w-full flex justify-center">
+            <a class="text-center" id="button-find-shortest-path">Calcular</a>
+            <a class="text-center" id="button-cancel-all">Volver</a>
+        </div>
+
         <div id="matrix">
             <h2 class="matriz"><b>Matriz Ponderada</b></h2>
             <table id="matrix-body"></table>

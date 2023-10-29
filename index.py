@@ -17,6 +17,7 @@ def dijkstra():
     data = request.get_json()
     nodes = data.get('nodes', [])
     edges = data.get('edges', [])
+    selected = data.get('selected', [])
 
     grafo = Grafo()
     vertices = [Node(node['id'], node['label']) for node in nodes]
@@ -26,24 +27,16 @@ def dijkstra():
         grafo.agregar_vertice(Vertice(vertice.id, vertice.label))
 
     for arista in aristas:
+        fromNodeLabel = next((vertice.label for vertice in vertices if vertice.id == arista.fromNodeId))
+        toNodeLabel = next((vertice.label for vertice in vertices if vertice.id == arista.toNodeId))
         grafo.agregar_arista(Arista(
-            Vertice(arista.fromNodeId, vertices[arista.fromNodeId - 1].label),
-            Vertice(arista.toNodeId, vertices[arista.toNodeId - 1].label),
+            Vertice(arista.fromNodeId, fromNodeLabel),
+            Vertice(arista.toNodeId, toNodeLabel),
             arista.label
         ))
 
-    # aristas = [
-    #     Arista(Vertice("A"), Vertice("B"), 2),
-    #     Arista(Vertice("A"), Vertice("C"), 4),
-    #     Arista(Vertice("B"), Vertice("C"), 1),
-    #     Arista(Vertice("B"), Vertice("D"), 7),
-    #     Arista(Vertice("C"), Vertice("D"), 3),
-    #     Arista(Vertice("C"), Vertice("E"), 5),
-    #     Arista(Vertice("D"), Vertice("E"), 2)
-    # ]
-
-    inicio = Vertice(1, "A")
-    destino = Vertice(5, "E")
+    inicio = Vertice(selected[0]['id'], selected[0]['label'])
+    destino = Vertice(selected[1]['id'], selected[1]['label'])
 
     distancia, camino = grafo.dijkstra(inicio, destino)
     return jsonify({

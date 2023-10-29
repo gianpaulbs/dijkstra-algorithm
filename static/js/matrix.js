@@ -50,6 +50,7 @@ export class Matrix {
     reset() {
         this.nodes = [];
         this.data = [];
+        this.length = 0;
         this.draw();
     }
 

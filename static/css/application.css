@@ -1,14 +1,15 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box !important;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-body{
 
+body {
     font-family: 'open sans';
 }
-.header{
+
+.header {
     width: 100%;
     height: 600px;
     background-size: cover;
@@ -16,89 +17,107 @@ body{
     position: relative;
     margin-bottom: 30px;
 }
-.info-head{
+
+.info-head {
     max-width: 70%;
     flex-wrap: wrap;
     overflow: hidden;
-   
     font-size: 20px;
     color: #4a4a4a;
     text-align: center;
     margin-bottom: 20px;
-    padding-top: 9%;
-
+    padding-top: 6%;
 }
-/*nav*/
-.nav{
+
+.nav {
     text-align: right;
     position: fixed;
     width: 100%;
-    display:flex;
+    display: flex;
     align-items: center;
-    font-family: 'PT Sans',sans-serif;
+    font-family: 'PT Sans', sans-serif;
     justify-content: space-between;
-    padding:25px ;
+    padding: 25px;
     transition: all 0.5s ease;
-
 }
+
 .nav.active {
     z-index: 999;
     background: #fff;
-    box-shadow:  0 0 10px #000;
+    box-shadow: 0 0 10px #000;
     padding: 15px;
 }
-.nav.active .logo, .nav.active a{
+
+.nav.active .logo,
+.nav.active a {
     color: #2e0f32;
 }
-.nav.active a:hover{
+
+.nav.active a:hover {
     background: #2e0f32;
     color: #fff;
 }
-.logo{
+
+.logo {
     font-size: 25px;
-    color: #2e0f32 ;
+    color: #2e0f32;
     font-weight: 100;
     margin-left: 10px;
     letter-spacing: .1em;
 }
-.menu{
+
+.menu {
     display: flex;
 }
-.menu li{
+
+.menu li {
     list-style: none;
     margin: 10px;
 }
-.menu li a{
 
+.menu li a {
     text-decoration: none;
     font-weight: bold;
     transition: all 0.5s ease;
     color: #2e0f32;
 }
-.menu li a:hover{
+
+.menu li a:hover {
     padding: 5px 10px;
     background: #2e0f32;
     color: #fff;
     border-radius: 15px;
 }
-.scrol{
+
+.scrol {
     height: 100px;
 }
 
+#message-container {
+    margin: 15px 0 0 0;
+    text-align: center;
+    display: none;
+}
 
 #network {
-    margin:auto;
-    margin-top: 60px;
+    margin: auto;
     width: 70%;
     height: 60%;
     border: 2px solid lightgray;
-
-    background-color: #f8f9fa; 
-    box-shadow: 0 4px 7px 0 #000; 
-    
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 7px 0 #000;
+    margin-top: 30px;
 }
+
+#dijkstra-buttons {
+    visibility: hidden;
+    height: 0;
+}
+
 #button-generate-nodes,
-#button-shortest-path,
+#button-toggle-dijkstra,
+#button-cancel-all,
+#button-find-shortest-path,
 #button-clear-all {
     position: relative;
     display: inline-block;
@@ -109,89 +128,90 @@ body{
     text-transform: uppercase;
     border: 2px solid #2e0f32;
     padding: 10px 30px;
-    margin: 3% 2%;  
-    width:20%;
+    margin: 3% 2%;
+    width: 20%;
     border-radius: 8px;
     z-index: 1;
     overflow: hidden;
     transition: color 1s, box-shadow 1s;
-    transition-delay: 0s,1s;
+    transition-delay: 0s, 1s;
     cursor: pointer;
 }
-.botones>a:hover{
+
+.botones>a:hover {
     color: #fff !important;
-
-
 }
+
 .botones>a::before {
     content: ' ';
     position: absolute;
-    top: 0  ;
-    left: -20% ;
-    width:0 ;
+    top: 0;
+    left: -20%;
+    width: 0;
     height: 100%;
     background: #2e0f32;
     transform: skewX(35deg);
     transition: 1s;
-    z-index: -1 ;
+    z-index: -1;
 }
+
 .botones>a:hover:before {
     width: 100%;
-    
 }
-.Aplicacion{
-    margin-left: 40px;
 
+.Aplicacion {
+    margin-left: 40px;
     font-size: 40px;
     margin-bottom: 40px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#matrix h2{
-   text-align: center;
-   margin-bottom: 30px;
-
+#matrix h2 {
+    text-align: center;
+    margin-bottom: 30px;
 }
+
 #matrix {
     width: 40%;
-    margin: auto; 
-    margin-top: 40px;
-    background-color: #f8f9fa; 
+    display: none;
+    margin: auto;
+    background-color: #f8f9fa;
     box-shadow: 0 4px 8px 0 #000;
-    padding: 20px; 
+    padding: 20px;
     transition: transform 0.3s;
     margin-bottom: 5%;
-    margin-top: 3%;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-#matrix:hover{
-    transform: scale(1.05); 
+
+#matrix:hover {
+    transform: scale(1.05);
 }
+
 #matrix-body {
     width: 100%;
-    border-collapse: collapse; 
+    border-collapse: collapse;
 }
 
 #matrix-body td {
     border: 1px solid #ddd;
-    padding: 8px; 
+    padding: 8px;
 }
 
-.wave{
-    position:absolute;
-    bottom:0;
+.wave {
+    position: absolute;
+    bottom: 0;
     width: 100%;
 }
 
 body {
     position: relative;
     min-height: 100vh;
-    padding-bottom: 150px; 
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
 
-.footer{
+.footer {
     text-align: right;
     margin-top: 400px;
     position: absolute;
@@ -202,7 +222,7 @@ body {
 
 .footer p {
     margin-top: 120px;
-    position:relative;
-    z-index :2;
+    position: relative;
+    z-index: 2;
     margin-right: 30px;
- }
+}
