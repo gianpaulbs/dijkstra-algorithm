@@ -29,6 +29,15 @@ body {
     padding-top: 6%;
 }
 
+
+@keyframes changeColor {
+    0% {
+        color: #fff; /* Color inicial */
+    }
+    100% {
+        color: #2e0f32; /* Color final después de 1 segundo */
+    }
+}
 .nav {
     text-align: right;
     position: fixed;
@@ -97,6 +106,7 @@ body {
     margin: 15px 0 0 0;
     text-align: center;
     display: none;
+    animation: changeColor 2s linear forwards;
 }
 
 #network {
