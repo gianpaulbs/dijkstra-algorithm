@@ -1,158 +1,193 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{url_for('static', filename='css/Estilos.css')}}">
-
 </head>
+
 <body>
-    <header class="header " style= "background-image: url(&apos;{{url_for('static',filename='img/header.jpg')}}&apos;);"> 
-      <nav class="nav">
-        <div class="logo">Grupo 2</div>
-        <ul class="menu">
-        <li><a href="/application">Aplicación</a></li>
-        <li><a href="#integrantes">Integrantes</a></li>
+  <header class="header " style="background-image: url(&apos;{{url_for('static',filename='img/header.jpg')}}&apos;);">
+    <nav class="nav">
+      <div class="logo">Grupo 2</div>
+      <ul class="menu">
+        <li>
+          <a href="/application">Aplicación</a>
+        </li>
+        <li>
+          <a href="#integrantes">Integrantes</a>
+        </li>
       </ul>
     </nav>
-    <section class="textos-header font-bold "><h1>Algoritmo de Dijkstra</h1>
-        <h2>Encuentra el camino más corto entre dos puntos.</h2>
-      </section>
-    <div class ="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-5.64,33.06 C86.34,-58.69 315.46,110.05 500.00,49.98 L588.03,174.19 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path></svg></div>
-    </header>
-    
-    <main>
-      <section class="contenedor">
-        <h2 class="titulo1 text-4xl text-center font-bold text-purple-950">Acerca de Dijkstra</h2>
-        <div class="contenedor-Acerca-de w-full flex flex-wrap">
-          <div class="caja sm:w-full md:w-1/3">
-            <div class="texto-caja">
-              <h3 class="tit_que">1. ¿Qué es Dijkstra?</h3>
-              <p>El algoritmo de Dijkstra, también llamado algoritmo de caminos mínimos, es un algoritmo para la determinación del camino más corto, dado un vértice origen, hacia el resto de los vértices en un grafo que tiene pesos en cada arista.
-                La idea subyacente en este algoritmo consiste en ir explorando todos los caminos más cortos que parten del vértice origen y que llevan a todos los demás vértices; cuando se obtiene el camino más corto desde el vértice origen hasta el resto de los vértices que componen el grafo, el algoritmo se detiene. Se trata de una especialización de la búsqueda de costo uniforme y, como tal, no funciona en grafos con aristas de costo negativo</p>
-            </div>
-            <div class="imagen-Acerca-de">
-              <img src="{{url_for('static',filename='img/dijkstra.gif')}}" alt="" class="imagen-Acerca-de">
-            </div>
+    <section class="textos-header font-bold ">
+      <h1>Algoritmo de Dijkstra</h1>
+      <h2>Encuentra el camino más corto entre dos puntos.</h2>
+      <div class="button-container font-bold ">
+        <a href="/application" class="button-application">PROBAR</a>
+      </div>
+    </section>
+    <div class="wave" style="height: 150px; overflow: hidden;">
+      <svg viewbox="0 0 500 150" preserveaspectratio="none" style="height: 100%; width: 100%;">
+        <path d="M-5.64,33.06 C86.34,-58.69 315.46,110.05 500.00,49.98 L588.03,174.19 L0.00,150.00 Z"
+          style="stroke: none; fill: #fff;"></path>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+    <section class="contenedor" style="margin-bottom: 20px;">
+      <h2 class="titulo1 text-4xl text-center font-bold text-purple-950">Acerca de Dijkstra</h2>
+      <div class="contenedor-Acerca-de w-full flex flex-wrap">
+        <div class="caja sm:w-full md:w-1/3">
+          <div class="texto-caja">
+            <h3 class="tit_que">1. ¿Qué es Dijkstra?</h3>
+            <p>El algoritmo de Dijkstra, también llamado algoritmo de caminos mínimos, es un algoritmo para la
+              determinación del camino más corto, dado un vértice origen, hacia el resto de los vértices en un grafo que
+              tiene pesos en cada arista.
+              La idea subyacente en este algoritmo consiste en ir explorando todos los caminos más cortos que parten del
+              vértice origen y que llevan a todos los demás vértices; cuando se obtiene el camino más corto desde el
+              vértice origen hasta el resto de los vértices que componen el grafo, el algoritmo se detiene. Se trata de
+              una especialización de la búsqueda de costo uniforme y, como tal, no funciona en grafos con aristas de
+              costo negativo</p>
           </div>
-          <div class="caja sm:w-full md:w-1/3">
-            <div class="texto-caja">
-              <h3 class="tit_his">2. Historia</h3>
-              <p>
-                El algoritmo de Dijkstra, desarrollado por Edsger W. Dijkstra en 1956, se creó para encontrar la ruta más corta en una red de carreteras. Sin embargo, su utilidad se ha extendido a la informática y otros campos. Este algoritmo es fundamental en la teoría de grafos y la informática, y se utiliza para determinar rutas óptimas en diversas redes. Su idea central es seleccionar iterativamente el nodo más cercano no visitado y actualizar las distancias a sus vecinos no visitados. Esto asegura que, cuando un nodo se marca como visitado, su distancia desde el nodo de origen sea la más corta posible. La eficiencia y simplicidad del algoritmo lo convierten en una herramienta valiosa para resolver problemas relacionados con la búsqueda de rutas más cortas en diversas aplicaciones.
-              </p>
-            </div>
-            <div class="imagen-historia">
-              <img src="{{url_for('static',filename='img/edger.jpg')}}" alt="" class="imagen-historia">
-            </div>
+          <div class="imagen-Acerca-de">
+            <img src="{{url_for('static',filename='img/dijkstra.gif')}}" alt="" class="imagen-Acerca-de">
           </div>
         </div>
-        <div class="button-container font-bold ">
-          <a href="/application" class="button-application">   PROBAR   </a>
+        <div class="caja sm:w-full md:w-1/3">
+          <div class="texto-caja">
+            <h3 class="tit_his">2. Historia</h3>
+            <p>
+              El algoritmo de Dijkstra, desarrollado por Edsger W. Dijkstra en 1956, se creó para encontrar la ruta más
+              corta en una red de carreteras. Sin embargo, su utilidad se ha extendido a la informática y otros campos.
+              Este algoritmo es fundamental en la teoría de grafos y la informática, y se utiliza para determinar rutas
+              óptimas en diversas redes. Su idea central es seleccionar iterativamente el nodo más cercano no visitado y
+              actualizar las distancias a sus vecinos no visitados. Esto asegura que, cuando un nodo se marca como
+              visitado, su distancia desde el nodo de origen sea la más corta posible. La eficiencia y simplicidad del
+              algoritmo lo convierten en una herramienta valiosa para resolver problemas relacionados con la búsqueda de
+              rutas más cortas en diversas aplicaciones.
+            </p>
+          </div>
+          <div class="imagen-historia">
+            <img src="{{url_for('static',filename='img/edger.jpg')}}" alt="" class="imagen-historia">
+          </div>
         </div>
-      </section>
-      <section class="integrantes"id="integrantes">
-        <h1 class="titulo text-4xl font-bold text-purple-950">Integrantes</h1>
-        <div class="gen w-full flex justify-center">
+      </div>
+    </section>
+    <section class="integrantes" id="integrantes">
+      <h1 class="titulo text-4xl font-bold text-purple-950">Integrantes</h1>
+      <div class="gen w-full flex justify-center">
         <div class="card">
-          <div class ="head">
-          <div class="circle"></div>
-          <div class="img">
-            <img src="{{url_for('static',filename='img/cris1.jpg')}}" alt="">
+          <div class="head">
+            <div class="circle"></div>
+            <div class="img">
+              <img src="{{url_for('static',filename='img/cris1.jpg')}}" alt="">
+            </div>
           </div>
-          </div>
-      
+
           <div class="description">
             <h3 class="pj font-bold text-xl">Christian Velazques</h3>
             <h4 class="pjt font-bold">Ciencias de la Computación</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
           </div>
-          <div class="codigo"> 
+          <div class="codigo">
             <h3>Código de alumno</h3>
             <h4>U202218075</h4>
           </div>
         </div>
         <div class="card">
-          <div class ="head">
-          <div class="circle"></div>
-          <div class="img">
-            <img src="{{url_for('static',filename='img/joaquin.jpg')}}" alt="">
+          <div class="head">
+            <div class="circle"></div>
+            <div class="img">
+              <img src="{{url_for('static',filename='img/joaquin.jpg')}}" alt="">
+            </div>
           </div>
-          </div>
-      
+
           <div class="description">
             <h3 class="pj font-bold text-xl">Joaquin Eguia</h3>
             <h4 class="pjt font-bold">Ciencias de la Computación</h4>
             <p>Siempre hay una solución, solo necesitas buscar en la documentación lo suficiente</p>
           </div>
-          <div class="codigo"> 
+          <div class="codigo">
             <h3>Código de alumno</h3>
-            <h4> U202213539</h4>
+            <h4>
+              U202213539</h4>
           </div>
         </div>
         <div class="card">
-          <div class ="head">
-          <div class="circle"></div>
-          <div class="img">
-            <img src="{{url_for('static',filename='img/gp1.jpg')}}" alt="">
+          <div class="head">
+            <div class="circle"></div>
+            <div class="img">
+              <img src="{{url_for('static',filename='img/gp1.jpg')}}" alt="">
+            </div>
           </div>
-          </div>
-      
+
           <div class="description">
             <h3 class="pj font-bold text-xl">Gianpaul Bernal</h3>
             <h4 class="pjt font-bold">Ciencias de la Computación</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
+            <p style="font-family: Consolas, monospace;">
+              <br />
+              ~/mylife mvn spring-boot:run
+            </p>
           </div>
-          <div class="codigo"> 
+          <div class="codigo">
             <h3>Código de alumno</h3>
-            <h4> U20221A634</h4>
+            <h4>
+              U20221A634</h4>
           </div>
         </div>
         <div class="card">
-          <div class ="head">
-          <div class="circle"></div>
-          <div class="img">
-            <img src="{{url_for('static',filename='img/dan.jpg')}}" alt="">
+          <div class="head">
+            <div class="circle"></div>
+            <div class="img">
+              <img src="{{url_for('static',filename='img/dan.jpg')}}" alt="">
+            </div>
           </div>
-          </div>
-      
+
           <div class="description">
             <h3 class="pj font-bold text-xl">Daniella Vargas</h3>
             <h4 class="pjt font-bold">Ciencias de la Computación</h4>
-            <p>while True: learn()</p>
+            <p style="font-family: Consolas, monospace;">
+              <br />
+              while True: learn()
+            </p>
           </div>
-          <div class="codigo"> 
+          <div class="codigo">
             <h3>Código de alumno</h3>
-            <h4> U202219211</h4>
+            <h4>
+              U202219211</h4>
           </div>
         </div>
         <div class="card">
-          <div class ="head">
-          <div class="circle"></div>
-          <div class="img">
-            <img src="{{url_for('static',filename='img/kim.jpg')}}" alt="">
+          <div class="head">
+            <div class="circle"></div>
+            <div class="img">
+              <img src="{{url_for('static',filename='img/kim.jpg')}}" alt="">
+            </div>
           </div>
-          </div>
-      
+
           <div class="description">
             <h3 class="pj font-bold text-xl">Kim Jurado</h3>
             <h4 class="pjt font-bold">Ingeniería de sistemas</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nobis?</p>
+            <p style="margin-top: 25px;">Prefiero ser una pequeña rara, que una gran aburrida.</p>
           </div>
-          <div class="codigo"> 
+          <div class="codigo">
             <h3>Código de alumno</h3>
-            <h4> U202212134</h4>
+            <h4>
+              U202212134</h4>
           </div>
         </div>
-        </div>
-      </section>
-    </main>
-    <div class="scrol"></div>
-    <!-- Import menu -->
-    <script src="{{url_for('static', filename='js/menu.js')}}"></script>
-    <footer class="footer">
-        <p>© 2023 grupo 2 mate computacional</p>
-    </footer>
-</body> 
+      </div>
+    </section>
+  </main>
+  <div class="scrol"></div>
+  <!-- Import menu -->
+  <script src="{{url_for('static', filename='js/menu.js')}}"></script>
+  <footer class="footer">
+    <p>© 2023 grupo 2 mate computacional</p>
+  </footer>
+</body>
+
 </html>

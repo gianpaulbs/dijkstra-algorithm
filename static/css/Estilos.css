@@ -217,9 +217,11 @@ header .textos-header{
     text-align: right;
     margin-right: 30px;
 }
-.button-container {margin-top: 60px; margin-bottom: 50px;
-text-align: center;
 
+.button-container {
+    text-align: center;
+    position: absolute;
+    top: 360px;
 }
 .button-application {
     font-size: 1.5em;

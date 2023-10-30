@@ -137,14 +137,13 @@ const resetDijkstra = () => {
     }
 
     for (let node of selectedNodesFromServer) {
-        console.log(node);
         network.body.nodes[node.id].options.color.background = defaultColor.node.background;
         network.body.nodes[node.id].options.color.highlight = {
             background: defaultColor.node.highlight.background,
             border: defaultColor.node.highlight.border
         };
     }
-
+    
     for (let edge of selectedEdgesForShortestPath) {
         network.body.edges[edge.id].options.color.color = defaultColor.edge.color;
         network.body.edges[edge.id].options.color.highlight = defaultColor.edge.color;
@@ -154,7 +153,6 @@ const resetDijkstra = () => {
     selectedNodesFromServer.splice(0);
     selectedEdgesForShortestPath.splice(0);
     message.innerHTML = 'Seleccione el nodo de partida y de llegada usando las teclas <b>CTRL + Click</b>.';
-    console.log(network.body.edges);
     network.redraw();
 }
 
@@ -215,7 +213,10 @@ const findShortesPath = () => {
 
     const setEdgeColors = (path) => {
         const edgesArray = data.edges.get();
-        console.log('edgesArray', edgesArray);
+
+        for (let i = 0; i < edgesArray.length; i++) {
+            delete edgesArray[i].color;
+        }
 
         for (let i = 0; i < path.length - 1; i++) {
             const sourceNodeId = path[i].id;
@@ -227,7 +228,6 @@ const findShortesPath = () => {
             ));
 
             if (edge) {
-                console.log(edge);
                 edge.color = 'red';
                 selectedEdgesForShortestPath.push(edge);
             }
