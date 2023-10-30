@@ -77,7 +77,11 @@ class Grafo:
 
         cola_prioridad = [(0, inicio)]
 
+        iteracion = 0  # Inicializa el contador de iteraciones
+        distancia_acumulada = 0  # Inicializa la distancia acumulada
+
         while cola_prioridad:
+            iteracion += 1  # Incrementa el contador de iteraciones
             distancia_actual, vertice_actual = heapq.heappop(cola_prioridad)
 
             if vertice_actual == destino:
@@ -87,23 +91,27 @@ class Grafo:
                 distancia_nueva = distancias[vertice_actual] + peso
 
                 if distancia_nueva < distancias[adyacente]:
+                    # Actualiza la distancia acumulada y el nodo del que se partió
+                    distancia_acumulada += peso
                     distancias[adyacente] = distancia_nueva
-                    camino[adyacente] = vertice_actual
+                    camino[adyacente] = (vertice_actual, distancia_acumulada)
                     heapq.heappush(cola_prioridad, (distancia_nueva, adyacente))
 
         camino_resultante = []
         vertice_actual = destino
-        
+
         while vertice_actual:
-            camino_resultante.insert(0, vertice_actual.to_dict())
-            vertice_actual = camino[vertice_actual]
+            nodo, distancia_acumulada = camino[vertice_actual]
+            camino_resultante.insert(0, (vertice_actual.to_dict(), distancia_acumulada, nodo.to_dict(), iteracion))
+            vertice_actual = nodo
+            iteracion -= 1
 
         if distancias[destino] == float('inf'):
             raise Exception("No hay camino entre los vértices de inicio y destino")
 
         return distancias[destino], camino_resultante
-        
-        
+
+
 # testeo de grafo con ciclos
 """
 if __name__ == "__main__":
