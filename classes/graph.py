@@ -67,102 +67,99 @@ class Grafo:
     def obtener_adyacentes(self, vertice: Vertice) -> list[tuple[Vertice, int]]:
         return self.vertices[vertice]
 
-    def dijkstra(self, inicio: Vertice, destino: Vertice):
-        if inicio not in self.vertices or destino not in self.vertices:
-            raise Exception("El vértice de inicio o destino no existe en el grafo")
+        def dijkstra(self, inicio: Vertice, destino: Vertice):
+            if inicio not in self.vertices or destino not in self.vertices:
+                raise Exception("El vértice de inicio o destino no existe en el grafo")
 
-        distancias = {vertice: float('inf') for vertice in self.vertices}
-        distancias[inicio] = 0
-        camino = {vertice: None for vertice in self.vertices}
+            distancias = {vertice: float('inf') for vertice in self.vertices}
+            distancias[inicio] = 0
+            camino = {vertice: None for vertice in self.vertices}
 
-        cola_prioridad = [(0, inicio)]
+            cola_prioridad = [(0, inicio)]
+            dict = {inicio: (('-', 0), 0)}
+            iteracion = 0
+            while cola_prioridad:
+                distancia_actual, vertice_actual = heapq.heappop(cola_prioridad)
 
-        iteracion = 0  # Inicializa el contador de iteraciones
-        distancia_acumulada = 0  # Inicializa la distancia acumulada
+                if vertice_actual == destino:
+                    break
 
-        while cola_prioridad:
-            iteracion += 1  # Incrementa el contador de iteraciones
-            distancia_actual, vertice_actual = heapq.heappop(cola_prioridad)
+                for adyacente, peso in self.vertices[vertice_actual]:
+                    distancia_nueva = distancias[vertice_actual] + peso
+                    iteracion += 1
 
-            if vertice_actual == destino:
-                break
+                    if distancia_nueva < distancias[adyacente]:
+                        distancias[adyacente] = distancia_nueva
+                        camino[adyacente] = vertice_actual
+                        dict[adyacente] = ((vertice_actual, distancias[adyacente]), iteracion)
+                        heapq.heappush(cola_prioridad, (distancia_nueva, adyacente))
 
-            for adyacente, peso in self.vertices[vertice_actual]:
-                distancia_nueva = distancias[vertice_actual] + peso
+            camino_resultante = []
+            vertice_actual = destino
 
-                if distancia_nueva < distancias[adyacente]:
-                    # Actualiza la distancia acumulada y el nodo del que se partió
-                    distancia_acumulada += peso
-                    distancias[adyacente] = distancia_nueva
-                    camino[adyacente] = (vertice_actual, distancia_acumulada)
-                    heapq.heappush(cola_prioridad, (distancia_nueva, adyacente))
+            while vertice_actual:
+                camino_resultante.insert(0, vertice_actual.to_dict())
+                vertice_actual = camino[vertice_actual]
 
-        camino_resultante = []
-        vertice_actual = destino
+            if distancias[destino] == float('inf'):
+                raise Exception("No hay camino entre los vértices de inicio y destino")
 
-        while vertice_actual:
-            nodo, distancia_acumulada = camino[vertice_actual]
-            camino_resultante.insert(0, (vertice_actual.to_dict(), distancia_acumulada, nodo.to_dict(), iteracion))
-            vertice_actual = nodo
-            iteracion -= 1
+            return distancias[destino], camino_resultante, dict
 
-        if distancias[destino] == float('inf'):
-            raise Exception("No hay camino entre los vértices de inicio y destino")
+    # testeo de grafo con ciclos
+    """
+    if __name__ == "__main__":
+        grafo = Grafo()
+        vertices = [Vertice("A"), Vertice("B"), Vertice("C"), Vertice("D")]
 
-        return distancias[destino], camino_resultante
+        for vertice in vertices:
+            grafo.agregar_vertice(vertice)
 
+        aristas = [
+            Arista(Vertice("A"), Vertice("B"), 2),
+            Arista(Vertice("B"), Vertice("C"), 3),
+            Arista(Vertice("C"), Vertice("D"), 4),
+            Arista(Vertice("D"), Vertice("A"), 5)
+        ]
 
-# testeo de grafo con ciclos
+        for arista in aristas:
+            grafo.agregar_arista(arista)
+
+        inicio = Vertice("A")
+        destino = Vertice("C")
+        distancia, camino = grafo.dijkstra(inicio, destino)
+
+        print(f"Distancia más corta entre {inicio} y {destino}: {distancia}")
+        print("Camino:", " -> ".join(map(str, camino)))
+    """
+
+    # testeo
+    """
+    if __name__ == "__main__":
+        grafo = Grafo()
+        vertices = ["A", "B", "C", "D", "E"]
+        for vertice in vertices:
+            grafo.agregar_vertice(Vertice(vertice))
+
+        aristas = [
+            Arista(Vertice("A"), Vertice("B"), 2),
+            Arista(Vertice("A"), Vertice("C"), 4),
+            Arista(Vertice("B"), Vertice("C"), 1),
+            Arista(Vertice("B"), Vertice("D"), 7),
+            Arista(Vertice("C"), Vertice("D"), 3),
+            Arista(Vertice("C"), Vertice("E"), 5),
+            Arista(Vertice("D"), Vertice("E"), 2)
+        ]
+
+        for arista in aristas:
+            grafo.agregar_arista(arista)
+
+        inicio = Vertice("A")
+        destino = Vertice("E")
+
+        distancia, camino,dict,iteracion = grafo.dijkstra(inicio, destino)
+
+        print(f"Distancia más corta entre {inicio} y {destino}: {distancia}")
+        print("Camino:", " -> ".join(map(str, camino)))
+        print(dict)
 """
-if __name__ == "__main__":
-    grafo = Grafo()
-    vertices = [Vertice("A"), Vertice("B"), Vertice("C"), Vertice("D")]
-
-    for vertice in vertices:
-        grafo.agregar_vertice(vertice)
-    
-    aristas = [
-        Arista(Vertice("A"), Vertice("B"), 2),
-        Arista(Vertice("B"), Vertice("C"), 3),
-        Arista(Vertice("C"), Vertice("D"), 4),
-        Arista(Vertice("D"), Vertice("A"), 5)
-    ]
-    
-    for arista in aristas:
-        grafo.agregar_arista(arista)
-    
-    inicio = Vertice("A")
-    destino = Vertice("C")
-    distancia, camino = grafo.dijkstra(inicio, destino)
-    
-    print(f"Distancia más corta entre {inicio} y {destino}: {distancia}")
-    print("Camino:", " -> ".join(map(str, camino)))
-"""
-
-# testeo
-if __name__ == "__main__":
-    grafo = Grafo()
-    vertices = ["A", "B", "C", "D", "E"]
-    for vertice in vertices:
-        grafo.agregar_vertice(Vertice(vertice))
-
-    aristas = [
-        Arista(Vertice("A"), Vertice("B"), 2),
-        Arista(Vertice("A"), Vertice("C"), 4),
-        Arista(Vertice("B"), Vertice("C"), 1),
-        Arista(Vertice("B"), Vertice("D"), 7),
-        Arista(Vertice("C"), Vertice("D"), 3),
-        Arista(Vertice("C"), Vertice("E"), 5),
-        Arista(Vertice("D"), Vertice("E"), 2)
-    ]
-
-    for arista in aristas:
-        grafo.agregar_arista(arista)
-    
-    inicio = Vertice("A")
-    destino = Vertice("E")
-
-    distancia, camino = grafo.dijkstra(inicio, destino)
-
-    print(f"Distancia más corta entre {inicio} y {destino}: {distancia}")
-    print("Camino:", " -> ".join(map(str, camino)))
