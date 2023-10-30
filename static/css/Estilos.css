@@ -254,6 +254,42 @@ text-align: center;
 
 
 /* integrantes*/
+@media screen and (max-width: 768px) {
+    .card {
+        margin-bottom: 30% !important; /* Margen negativo en la parte superior e inferior, sin modificar el margen lateral */
+    }
+    .integrantes .card .description p{
+        font-size: 14px;
+    }
+
+    .integrantes .card .description h3{
+        color: #2e0f32;
+        font-size: 16px;
+    }
+    .integrantes .card .description h4{
+        color: #4d1f3b;
+        font-size: 15px;
+    }
+    .integrantes .gen{
+
+        padding: 3px 17% 50px 17% !important;
+    }
+    .integrantes .card .head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .integrantes .card .head .circle {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: #2e0f32;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+    }
+}
 .integrantes .gen{
     display: flex;
     text-align: center;
@@ -319,8 +355,10 @@ text-align: center;
     color: #4d1f3b;
 }
 .integrantes .card .description p{
-    margin-top: 20px;
-    font-size: 15px;
+    text-align: center;
+
+
+    margin-top: 3%;
 }
 .integrantes .card .codigo{
     height: 200px;
