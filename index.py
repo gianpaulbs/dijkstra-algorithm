@@ -44,4 +44,4 @@ def dijkstra():
         'path': camino
     })
 
-app.run(debug=True)
+app.run(port="8000")
