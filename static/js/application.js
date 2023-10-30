@@ -247,7 +247,7 @@ const findShortesPath = () => {
     };
     
     axios
-        .post('https://dijkstra-algorithm-f5a751885c3e.herokuapp.com:5000/dijkstra', body)
+        .post('http://localhost:5000/dijkstra', body)
         .then((response) => {
             handleResponse(response.data);
         })
