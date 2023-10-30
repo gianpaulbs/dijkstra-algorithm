@@ -2,6 +2,7 @@ import { Matrix } from './matrix.js';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const selectedNodesFromServer = [];
+const selectedEdgesForShortestPath = [];
 const shuffledAlphabet = [...alphabet];
 
 function shuffleArray(array) {
@@ -121,6 +122,42 @@ const clearAll = () => {
     toggleMatrixContainer();
 }
 
+const resetDijkstra = () => {
+    const defaultColor = {
+        node: {
+            background: "#97C2FC",
+            highlight: {
+                border: "#2B7CE9",
+                background: "#D2E5FF"
+            }
+        },
+        edge: {
+            color: "#2B7CE9"
+        }
+    }
+
+    for (let node of selectedNodesFromServer) {
+        console.log(node);
+        network.body.nodes[node.id].options.color.background = defaultColor.node.background;
+        network.body.nodes[node.id].options.color.highlight = {
+            background: defaultColor.node.highlight.background,
+            border: defaultColor.node.highlight.border
+        };
+    }
+
+    for (let edge of selectedEdgesForShortestPath) {
+        network.body.edges[edge.id].options.color.color = defaultColor.edge.color;
+        network.body.edges[edge.id].options.color.highlight = defaultColor.edge.color;
+        network.body.edges[edge.id].options.color.hover = defaultColor.edge.color;
+    }
+
+    selectedNodesFromServer.splice(0);
+    selectedEdgesForShortestPath.splice(0);
+    message.innerHTML = 'Seleccione el nodo de partida y de llegada usando las teclas <b>CTRL + Click</b>.';
+    console.log(network.body.edges);
+    network.redraw();
+}
+
 const cancelAll = () => {
     network.setOptions({
         interaction: {
@@ -178,6 +215,7 @@ const findShortesPath = () => {
 
     const setEdgeColors = (path) => {
         const edgesArray = data.edges.get();
+        console.log('edgesArray', edgesArray);
 
         for (let i = 0; i < path.length - 1; i++) {
             const sourceNodeId = path[i].id;
@@ -188,10 +226,14 @@ const findShortesPath = () => {
                 (edge.from === targetNodeId && edge.to === sourceNodeId)
             ));
 
-            if (edge) edge.color = 'red';
+            if (edge) {
+                console.log(edge);
+                edge.color = 'red';
+                selectedEdgesForShortestPath.push(edge);
+            }
         }
 
-        data.edges.update(edgesArray);
+       data.edges.update(edgesArray);
     };
 
     const handleResponse = (data) => {
@@ -219,6 +261,7 @@ document.getElementById('button-toggle-dijkstra').addEventListener('click', chan
 document.getElementById('button-clear-all').addEventListener('click', clearAll);
 document.getElementById('button-cancel-all').addEventListener('click', cancelAll);
 document.getElementById('button-find-shortest-path').addEventListener('click', findShortesPath);
+document.getElementById('button-clear-dijkstra').addEventListener('click', resetDijkstra);
 
 const matrixContainer = document.getElementById('matrix');
 const networkContainer = document.getElementById('network');
