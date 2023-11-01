@@ -50,7 +50,8 @@ def dijkstra():
             'node': node.id,
             'content': {
                 'start': content[0][0].id if content[0][0] != '-' else '-',
-                'iteration': content[1]
+                'iteration': content[1],
+                'acumulada':content[0][1]
             }
         })
 
