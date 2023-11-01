@@ -225,9 +225,9 @@ header .textos-header{
 }
 .button-application {
     font-size: 1.5em;
-    background-color: #2e0f32;
+    background-color: #fff;
     width: calc(20% - 500px); 
-    color: #fff   ;
+    color: #2e0f32   ;
     border-radius: 8px;
     position: relative;
     letter-spacing: .1em;
@@ -240,12 +240,12 @@ header .textos-header{
     
  }
  .button-application:hover{
-    background-color: #713647;
-    box-shadow:  0 0 10px #713647,
-    0 0 5px #713647,
-    0 0 10px #713647,
-    0 0 20px #713647,
-    0 0 30px #713647;
+    background-color: #fff;
+    box-shadow:  0 0 10px #fff,
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 30px #fff;
 
 
  }
