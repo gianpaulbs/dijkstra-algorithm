@@ -54,18 +54,6 @@ def dijkstra():
                 'acumulada':content[0][1]
             }
         })
-
-        print('Nodo: ', node)
-        print('Label: ', content[0])
-        print('Iteracion: ', content[1])
-        # vertice, tupla = clave
-        # literal1, literal2 = tupla
-
-        # print(f"Clave: {clave}")
-        # print(f"Valor: {valor}")
-        # print(f"Vertice: {vertice}")
-        # print(f"Literal 1: {literal1}")
-        # print(f"Literal 2: {literal2}")
         
     return jsonify({
         'distance': distancia,
