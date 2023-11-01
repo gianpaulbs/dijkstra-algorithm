@@ -67,44 +67,44 @@ class Grafo:
     def obtener_adyacentes(self, vertice: Vertice) -> list[tuple[Vertice, int]]:
         return self.vertices[vertice]
 
-        def dijkstra(self, inicio: Vertice, destino: Vertice):
-            if inicio not in self.vertices or destino not in self.vertices:
-                raise Exception("El vértice de inicio o destino no existe en el grafo")
+    def dijkstra(self, inicio: Vertice, destino: Vertice):
+        if inicio not in self.vertices or destino not in self.vertices:
+            raise Exception("El vértice de inicio o destino no existe en el grafo")
 
-            distancias = {vertice: float('inf') for vertice in self.vertices}
-            distancias[inicio] = 0
-            camino = {vertice: None for vertice in self.vertices}
+        distancias = {vertice: float('inf') for vertice in self.vertices}
+        distancias[inicio] = 0
+        camino = {vertice: None for vertice in self.vertices}
 
-            cola_prioridad = [(0, inicio)]
-            dict = {inicio: (('-', 0), 0)}
-            iteracion = 0
-            while cola_prioridad:
-                distancia_actual, vertice_actual = heapq.heappop(cola_prioridad)
+        cola_prioridad = [(0, inicio)]
+        dict = {inicio: (('-', 0), 0)}
+        iteracion = 0
+        while cola_prioridad:
+            distancia_actual, vertice_actual = heapq.heappop(cola_prioridad)
 
-                if vertice_actual == destino:
-                    break
+            if vertice_actual == destino:
+                break
 
-                for adyacente, peso in self.vertices[vertice_actual]:
-                    distancia_nueva = distancias[vertice_actual] + peso
-                    iteracion += 1
+            for adyacente, peso in self.vertices[vertice_actual]:
+                distancia_nueva = distancias[vertice_actual] + peso
+                iteracion += 1
 
-                    if distancia_nueva < distancias[adyacente]:
-                        distancias[adyacente] = distancia_nueva
-                        camino[adyacente] = vertice_actual
-                        dict[adyacente] = ((vertice_actual, distancias[adyacente]), iteracion)
-                        heapq.heappush(cola_prioridad, (distancia_nueva, adyacente))
+                if distancia_nueva < distancias[adyacente]:
+                    distancias[adyacente] = distancia_nueva
+                    camino[adyacente] = vertice_actual
+                    dict[adyacente] = ((vertice_actual, distancias[adyacente]), iteracion)
+                    heapq.heappush(cola_prioridad, (distancia_nueva, adyacente))
 
-            camino_resultante = []
-            vertice_actual = destino
+        camino_resultante = []
+        vertice_actual = destino
 
-            while vertice_actual:
-                camino_resultante.insert(0, vertice_actual.to_dict())
-                vertice_actual = camino[vertice_actual]
+        while vertice_actual:
+            camino_resultante.insert(0, vertice_actual.to_dict())
+            vertice_actual = camino[vertice_actual]
 
-            if distancias[destino] == float('inf'):
-                raise Exception("No hay camino entre los vértices de inicio y destino")
+        if distancias[destino] == float('inf'):
+            raise Exception("No hay camino entre los vértices de inicio y destino")
 
-            return distancias[destino], camino_resultante, dict
+        return distancias[destino], camino_resultante, dict
 
     # testeo de grafo con ciclos
     """

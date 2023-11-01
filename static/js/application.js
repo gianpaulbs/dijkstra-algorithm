@@ -237,6 +237,7 @@ const findShortesPath = () => {
     };
 
     const handleResponse = (data) => {
+        console.log(data);
         const path = data.path;
         const pathLength = path.length;
         const startNode = path[0].node;

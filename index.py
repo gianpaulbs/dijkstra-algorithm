@@ -38,10 +38,38 @@ def dijkstra():
     inicio = Vertice(selected[0]['id'], selected[0]['label'])
     destino = Vertice(selected[1]['id'], selected[1]['label'])
 
-    distancia, camino = grafo.dijkstra(inicio, destino)
+    distancia, camino, etiquetas = grafo.dijkstra(inicio, destino)
+
+    formattedLabels = []
+
+    for clave, valor in etiquetas.items():
+        node = clave
+        content = valor
+
+        formattedLabels.append({
+            'node': node.id,
+            'content': {
+                'start': content[0][0].id if content[0][0] != '-' else '-',
+                'iteration': content[1]
+            }
+        })
+
+        print('Nodo: ', node)
+        print('Label: ', content[0])
+        print('Iteracion: ', content[1])
+        # vertice, tupla = clave
+        # literal1, literal2 = tupla
+
+        # print(f"Clave: {clave}")
+        # print(f"Valor: {valor}")
+        # print(f"Vertice: {vertice}")
+        # print(f"Literal 1: {literal1}")
+        # print(f"Literal 2: {literal2}")
+        
     return jsonify({
         'distance': distancia,
-        'path': camino
+        'path': camino,
+        'labels': formattedLabels
     })
 
 if __name__ == '__main__':
