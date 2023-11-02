@@ -43,16 +43,18 @@ def dijkstra():
     formattedLabels = []
 
     for clave, valor in etiquetas.items():
-        node = clave
+        node = clave # A, B ,C
         content = valor
-
+        print(node)
+        #bucle con valor nulo
         formattedLabels.append({
             'node': node.id,
             'content': {
-                'start': content[0][0].id if content[0][0] != '-' else '-',
+                'start': content[0][0].valor if content[0][0] != '-' else '-',
                 'iteration': content[1],
-                'acumulada':content[0][1]
-            }
+                'acumulada': content[0][1],
+            },
+            'valor':node.valor
         })
         
     return jsonify({

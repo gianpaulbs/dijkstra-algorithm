@@ -242,13 +242,20 @@ const findShortesPath = () => {
         const pathLength = path.length;
         const startNode = path[0].node;
         const endNode = path[pathLength - 1].node;
+          data.labels.forEach((label) => {
+            const { valor,content, node } = label; // Destructure the label object
+            const { iteration,start,acumulada } = content;
+            const nodegrafo = network.body.nodes[node];
+            nodegrafo.options.label = `\nNodo: ${valor}\n[${start},${acumulada}][${iteration}]`;
+            network.redraw();
+          });
 
         setEdgeColors(path);
         message.textContent = `La distancia más corta entre ${startNode} y ${endNode} es ${data.distance}.`;
     };
     
     axios
-        .post('http://localhost:5000/dijkstra', body)
+        .post('/dijkstra', body)
         .then((response) => {
             handleResponse(response.data);
         })
@@ -282,14 +289,16 @@ const manipulation = {
 const options = {
     locale: 'es',
     manipulation: manipulation,
-    edges: {
-        smooth: {
-            type: 'continuous'
-        }
-    },
+      nodes: {
+        shape: "dot",
+      },
+      edges: {
+        width: 2,
+      },
     interaction: {
         multiselect: false
-    }
+    },
+
 }
 
 const network = new vis.Network(networkContainer, data, options);
